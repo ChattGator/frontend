@@ -32,3 +32,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Notes
+* Link to Wireframe: https://excalidraw.com/#room=acddac3c42ebfdfb2960,ata10uRnm5MzU8pmyOlnVA
+* Branch Naming Scheme: `{what-you-are-you-working-on}/{what-you-are-doing-in-it}`. For Eg. If making a component for project card name branch `component/project-card`, if adding a feature name it `feature/something`, if making a fix name it `fix/something`, etc.
