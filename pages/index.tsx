@@ -5,8 +5,10 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head />
-			<main>
-				<h1 className="container py-24 lg:py-32">Landing Page</h1>
+			<main className="container py-24 lg:py-32">
+				<h1 className="text-4xl font-bold tracking-tighter lg:text-5xl">
+					Landing Page
+				</h1>
 			</main>
 		</>
 	);

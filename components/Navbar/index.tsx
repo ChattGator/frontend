@@ -1,32 +1,15 @@
 import Link from "next/link";
 import { useRouter, NextRouter } from "next/router";
-import { useState, useEffect } from "react";
 import type { FC } from "react";
 
 const Navbar: FC = () => {
-	const [isScrolled, setIsScrolled] = useState<boolean>(false);
-
 	const router: NextRouter = useRouter();
-
-	useEffect(() => {
-		const handleScroll: () => void = () => {
-			if (window.scrollY > 0) setIsScrolled(true);
-			else setIsScrolled(false);
-		};
-		window.addEventListener("scroll", handleScroll);
-
-		return () => window.removeEventListener("scroll", handleScroll);
-	});
 
 	return (
 		<>
-			<header
-				className={`sticky top-0 z-40 w-full flex-shrink-0 border-b bg-white ${
-					isScrolled ? "border-slate-200" : "border-transparent"
-				} transition duration-300 print:hidden`}
-			>
+			<header className="border-b border-slate-200 bg-white print:hidden">
 				<nav
-					className="container flex items-center justify-between py-4"
+					className="container flex items-center justify-between py-1"
 					role="navigation"
 				>
 					<Link href="/">
