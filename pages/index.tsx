@@ -1,10 +1,12 @@
+import { Head } from "@components";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
 	return (
 		<>
+			<Head />
 			<main>
-				<h1 className="text-4xl text-blue-600">Hello, World!</h1>
+				<h1 className="container py-24 lg:py-32">Landing Page</h1>
 			</main>
 		</>
 	);
