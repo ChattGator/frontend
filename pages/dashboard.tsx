@@ -1,4 +1,4 @@
-import { Input } from "@components";
+import { Head, Input } from "@components";
 import { useState } from "react";
 import type { FC } from "react";
 
@@ -11,20 +11,23 @@ const Dashboard: FC = () => {
 	const [state, setState] = useState<State>({ value: "", errorMessage: "" });
 
 	return (
-		<main className="container">
-			<h1>Dashboard</h1>
-			<div>
-				<Input
-					isRequired={true}
-					name="Name"
-					placeholder="Name"
-					type="text"
-					regex={/^[a-zA-z]+$/}
-					state={state}
-					setState={setState}
-				/>
-			</div>
-		</main>
+		<>
+			<Head title="Dashboard" />
+			<main className="container">
+				<div>
+					<Input
+						isRequired={true}
+						label="Name"
+						name="Name"
+						placeholder="Name"
+						type="text"
+						regex={/^[a-zA-z]+$/}
+						state={state}
+						setState={setState}
+					/>
+				</div>
+			</main>
+		</>
 	);
 };
 

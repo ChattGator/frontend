@@ -1,32 +1,27 @@
 import { useEffect, useRef, useId, Dispatch, SetStateAction } from "react";
 import { ExclamationCircleIcon } from "@heroicons/react/solid";
-import type { FC } from "react";
+import type { FC, InputHTMLAttributes } from "react";
 
 interface State {
 	value: string;
 	errorMessage: string;
 }
 
-interface Props {
-	name: string;
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
 	isRequired: boolean;
-	placeholder: string;
-	type: string;
 	regex?: RegExp;
-	onBlur?: () => void;
+	label: string;
 	state: State;
 	setState: Dispatch<SetStateAction<State>>;
 }
 
 const Input: FC<Props> = ({
-	name,
 	isRequired,
-	placeholder,
-	type,
 	regex,
-	onBlur,
+	label,
 	state,
 	setState,
+	...rest
 }) => {
 	const id: string = useId();
 	const didMount = useRef<boolean>(false);
@@ -60,15 +55,13 @@ const Input: FC<Props> = ({
 				className="block w-full text-xs font-semibold text-slate-600 lg:text-sm"
 			>
 				<span className="space-x-1">
-					{placeholder}
+					{label}
 					{isRequired && <span className="text-red-600">*</span>}
 				</span>
 			</label>
 			<input
-				type={type}
-				name={name}
+				className="w-full truncate rounded-lg border border-slate-200 p-3 text-sm placeholder-slate-400 ring-blue-600 transition-all focus:border-transparent focus:outline-none focus:ring-2 lg:text-base"
 				id={id}
-				placeholder={placeholder}
 				onChange={(e) =>
 					setState((state) => ({
 						...state,
@@ -76,8 +69,7 @@ const Input: FC<Props> = ({
 					}))
 				}
 				value={state.value}
-				onBlur={onBlur ?? undefined}
-				className="w-full truncate rounded-lg border border-slate-200 p-3 text-sm placeholder-slate-400 ring-blue-600 transition-all focus:border-transparent focus:outline-none focus:ring-2 lg:text-base"
+				{...rest}
 			/>
 			{state.errorMessage && (
 				<p className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 lg:text-sm">
