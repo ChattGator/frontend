@@ -20,19 +20,19 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@components*": [
+      "@components": [
         "components"
       ],
-      "@contexts*": [
+      "@contexts": [
         "contexts"
       ],
-      "@hooks*": [
+      "@hooks": [
         "hooks"
       ],
-      "@lib*": [
+      "@lib": [
         "lib"
       ],
-      "@utils*": [
+      "@utils": [
         "utils"
       ],
     }
