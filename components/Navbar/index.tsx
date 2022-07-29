@@ -2,12 +2,16 @@ import Link from "next/link";
 import { useRouter, NextRouter } from "next/router";
 import type { FC } from "react";
 
-const Navbar: FC = () => {
+interface Props {
+	isAuthenticated: boolean;
+}
+
+const Navbar: FC<Props> = ({ isAuthenticated }: Props) => {
 	const router: NextRouter = useRouter();
 
 	return (
 		<>
-			<header className="border-b border-slate-200 bg-white print:hidden">
+			<header className="print:hidden">
 				<nav
 					className="container flex items-center justify-between py-1"
 					role="navigation"

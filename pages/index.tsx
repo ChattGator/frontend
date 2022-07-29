@@ -6,7 +6,7 @@ const Home: NextPage = () => {
 		<>
 			<Head />
 			<main className="container py-24 lg:py-32">
-				<h1 className="text-4xl font-bold tracking-tighter lg:text-5xl">
+				<h1 className="text-center text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">
 					Landing Page
 				</h1>
 			</main>

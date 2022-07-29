@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 const App = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
-			<Navbar />
+			<Navbar isAuthenticated={true} />
 			<Component {...pageProps} />
 			<Footer />
 		</>
