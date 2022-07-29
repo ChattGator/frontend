@@ -6,7 +6,7 @@ interface Props {
 	isAuthenticated: boolean;
 }
 
-const Navbar: FC<Props> = ({ isAuthenticated }: Props) => {
+const Navbar: FC<Props> = ({ isAuthenticated }) => {
 	const router: NextRouter = useRouter();
 
 	return (

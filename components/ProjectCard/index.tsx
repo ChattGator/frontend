@@ -9,7 +9,7 @@ interface Props {
 	createdAt: Date;
 }
 
-const ProjectCard: FC<Props> = ({ link, title, desc, createdAt }: Props) => {
+const ProjectCard: FC<Props> = ({ link, title, desc, createdAt }) => {
 	return (
 		<Link href={link}>
 			<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-white p-4 text-center shadow-lg transition-all active:bg-blue-100 lg:gap-4 lg:p-8">
