@@ -13,7 +13,7 @@ const Navbar: FC = () => {
 					role="navigation"
 				>
 					<Link href="/">
-						<a className="px-4 py-2 text-3xl font-bold tracking-tighter text-slate-900 transition-colors active:text-blue-600 lg:text-4xl">
+						<a className="rounded-lg px-4 py-2 text-3xl font-bold tracking-tighter text-slate-900 transition-colors active:text-blue-600 lg:text-4xl">
 							ChattY
 						</a>
 					</Link>
