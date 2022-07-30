@@ -6,3 +6,4 @@ export { default as Input } from "./Input";
 export {default as ProfileCard} from "./ProfileCard"
 export {default as ProfileDetails} from "./ProfileDetails";
 export {default as GroupCard} from "./GroupCard";
+export {default as GroupDetails} from "./GroupDetails";
