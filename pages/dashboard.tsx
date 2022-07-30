@@ -1,4 +1,4 @@
-import { Head, Input } from "@components";
+import { Head, Input, ProfileCard } from "@components";
 import { useState } from "react";
 import type { FC } from "react";
 
@@ -27,6 +27,9 @@ const Dashboard: FC = () => {
 					/>
 				</div>
 			</main>
+			{/* <div className="h-full flex items-center justify-start ml-10">
+			<ProfileCard/>
+			</div> */}
 		</>
 	);
 };
