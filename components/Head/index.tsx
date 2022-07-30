@@ -7,7 +7,7 @@ interface Props {
 	keywords?: string;
 }
 
-const Head: FC<Props> = ({ title, description, keywords }: Props) => {
+const Head: FC<Props> = ({ title, description, keywords }) => {
 	return (
 		<NextHead>
 			<title>{title}</title>

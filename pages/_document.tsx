@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
 				<Head>
 					<meta charSet="UTF-8" />
 				</Head>
-				<body className="relative min-h-full subpixel-antialiased">
+				<body className="relative min-h-full bg-slate-50 subpixel-antialiased selection:bg-blue-200 selection:text-slate-900">
 					<Main />
 					<NextScript />
 				</body>
