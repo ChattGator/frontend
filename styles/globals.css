@@ -8,6 +8,6 @@
 	}
 	a,
 	button {
-		@apply ring-offset-4 focus:outline-none focus:ring-2 focus:ring-blue-600;
+		@apply ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-600;
 	}
 }

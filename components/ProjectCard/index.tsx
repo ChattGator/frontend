@@ -12,7 +12,7 @@ interface Props {
 const ProjectCard: FC<Props> = ({ link, title, desc, createdAt }) => {
 	return (
 		<Link href={link}>
-			<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-white p-4 text-center shadow-lg transition-all active:bg-blue-100 lg:gap-4 lg:p-8">
+			<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-white p-4 text-center shadow-lg transition-all hover:shadow-blue-200 active:bg-blue-100 lg:gap-4 lg:p-8">
 				<h2 className="text-2xl font-semibold text-blue-600 lg:text-3xl">
 					{title}
 				</h2>

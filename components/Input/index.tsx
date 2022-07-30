@@ -54,9 +54,14 @@ const Input: FC<Props> = ({
 				htmlFor={id}
 				className="block w-full text-xs font-semibold text-slate-600 lg:text-sm"
 			>
-				<span className="space-x-1">
+				<span
+					className={`space-x-1 ${
+						isRequired
+							? "after:ml-0.5 after:text-red-600 after:content-['*']"
+							: ""
+					}`}
+				>
 					{label}
-					{isRequired && <span className="text-red-600">*</span>}
 				</span>
 			</label>
 			<input
