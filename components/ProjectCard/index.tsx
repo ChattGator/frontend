@@ -1,30 +1,37 @@
 import Link from "next/link";
-import { ClockIcon } from "@heroicons/react/solid"
+import { ClockIcon } from "@heroicons/react/outline";
+import type { FC } from "react";
 
 interface Props {
-    link:string, 
-    title:string, 
-    desc:string, 
-    date_created:Date
+	link: string;
+	title: string;
+	desc: string;
+	createdAt: Date;
 }
 
-const ProjectCard = ({ link, title, desc, date_created }: Props) => {
-    return (
-        <Link href={ link }>
-            <a>
-                <div className="h-full px-8 pt-8 rounded-lg overflow-hidden text-center shadow-lg transition-shadow space-y-3 border hover:shadow-blue-200 hover:border-blue-200">
-                    <h3 className="lg:text-2xl text-xl font-semibold text-slate-600">{ title }</h3>
-                    <p className="leading-relaxed text-slate-500">{ desc }</p>
-                    <div className="text-center leading-none flex justify-center w-full pt-4">
-                        <span className="text-slate-400 inline-flex items-center leading-none text-sm pr-3 pb-3">
-                            <ClockIcon className="h-6 w-6 mr-2"/>
-                            <span>{ date_created.toDateString() }</span>
-                        </span>
-                    </div>
-                </div>
-            </a>
-        </Link>
-    )
-}
+const ProjectCard: FC<Props> = ({ link, title, desc, createdAt }) => {
+	return (
+		<Link href={link}>
+			<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-white p-4 text-center shadow-lg transition-all hover:shadow-blue-200 active:bg-blue-100 lg:gap-4 lg:p-8">
+				<h2 className="text-2xl font-semibold text-blue-600 lg:text-3xl">
+					{title}
+				</h2>
+				<p className="text-slate-600 lg:text-lg">{desc}</p>
+				<p className="flex items-center justify-center space-x-1 text-sm font-light text-slate-400 lg:text-base">
+					<span>
+						<ClockIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+					</span>
+					<span>
+						{createdAt.toLocaleDateString("en-US", {
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+						})}
+					</span>
+				</p>
+			</a>
+		</Link>
+	);
+};
 
 export default ProjectCard;

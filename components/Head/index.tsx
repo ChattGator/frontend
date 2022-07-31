@@ -1,5 +1,5 @@
 import { default as NextHead } from "next/head";
-import { FC } from "react";
+import type { FC } from "react";
 
 interface Props {
 	title?: string;
@@ -7,7 +7,7 @@ interface Props {
 	keywords?: string;
 }
 
-const Head: FC<Props> = ({ title, description, keywords }: Props) => {
+const Head: FC<Props> = ({ title, description, keywords }) => {
 	return (
 		<NextHead>
 			<title>{title}</title>
@@ -19,7 +19,6 @@ const Head: FC<Props> = ({ title, description, keywords }: Props) => {
 				name="keywords"
 				content={keywords}
 			/>
-			<meta charSet="UTF-8" />
 			<meta
 				name="viewport"
 				content="width=device-width, initial-scale=1.0"

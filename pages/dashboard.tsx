@@ -1,11 +1,34 @@
-import type { NextPage } from "next";
-import ProjectDetailsCard from "../components/ProjectDashboard/ProjectDetailsCard"
-const Home: NextPage = () => {
+import { Head, Input } from "@components";
+import { useState } from "react";
+import type { FC } from "react";
+
+interface State {
+	value: string;
+	errorMessage: string;
+}
+
+const Dashboard: FC = () => {
+	const [state, setState] = useState<State>({ value: "", errorMessage: "" });
+
 	return (
-        <div className="mt-24 px-24">
-            <ProjectDetailsCard id="67823464" title="Project 1" desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam alias ducimus labore. Recusandae et vitae laborum, repellendus, rerum, temporibus dolorum cupiditate aliquid saepe quos nobis tempora. Quasi deserunt in id." credentials="jhsdajkdbsahjgdbshagvbdhjdujehuiwqe" />
-        </div>
+		<>
+			<Head title="Dashboard" />
+			<main className="container">
+				<div>
+					<Input
+						isRequired={true}
+						label="Name"
+						name="Name"
+						placeholder="Name"
+						type="text"
+						regex={/^[a-zA-z]+$/}
+						state={state}
+						setState={setState}
+					/>
+				</div>
+			</main>
+		</>
 	);
 };
 
-export default Home;
+export default Dashboard;
