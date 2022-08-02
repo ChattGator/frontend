@@ -73,7 +73,7 @@ const Projects: NextPage = () => {
 	return (
 		<>
 			<Head title="Dashboard" />
-			<main className="container space-y-4 py-24 lg:space-y-8 lg:py-32">
+			<main className="container space-y-4 pb-24 lg:space-y-8 lg:pb-32">
 				<h1 className="text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">
 					My Projects
 				</h1>
