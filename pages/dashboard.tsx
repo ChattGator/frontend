@@ -49,7 +49,7 @@ const Dashboard: FC = () => {
 	return (
 		<>
 			<Head title="Dashboard" />
-			<main className="container space-y-10">
+			<main className="container space-y-10 pb-24 lg:pb-32">
 				<div>
 					<Input
 						isRequired={true}
@@ -62,8 +62,8 @@ const Dashboard: FC = () => {
 						setState={setState}
 					/>
 				</div>
-				<div className="grid grid-cols-3">
-					<div className="space-y-4">
+				<div className="grid grid-cols-1 lg:grid-cols-3">
+					<div className="space-y-4 rounded-lg bg-white p-4 shadow-lg lg:space-y-8 lg:p-8">
 						{persons.map(
 							({ name, image, username, isActive }, index) => (
 								<ProfileCard

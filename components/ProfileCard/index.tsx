@@ -1,20 +1,32 @@
 import Image from "next/image";
 import { useState } from "react";
+import { AtSymbolIcon } from "@heroicons/react/outline";
 import type { FC } from "react";
 
-interface Card {
+interface Props {
 	name: string;
-	description?: string;
-	username?: string;
 	image: string;
 	isActive?: boolean;
 }
 
-const ProfileCard: FC<Card> = ({
+type ConditionalProps =
+	| {
+			username?: string;
+			description?: never;
+			totalGroupMembers?: never;
+	  }
+	| {
+			username?: never;
+			description?: string;
+			totalGroupMembers?: number;
+	  };
+
+const ProfileCard: FC<Props & ConditionalProps> = ({
 	name,
 	description,
 	username,
 	image,
+	totalGroupMembers,
 	isActive,
 }) => {
 	const [isImageLoading, setIsImageLoading] = useState<boolean>(false);
@@ -28,7 +40,7 @@ const ProfileCard: FC<Card> = ({
 			>
 				<div className="flex items-center space-x-2 lg:space-x-4">
 					<div
-						className={`h-10 w-10 rounded-full bg-slate-200 lg:h-12 lg:w-12 ${
+						className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
 							isImageLoading && "animate-pulse"
 						}`}
 					>
@@ -44,9 +56,9 @@ const ProfileCard: FC<Card> = ({
 							onLoad={() => setIsImageLoading(false)}
 						/>
 					</div>
-					<p className="space-y-1 text-left">
+					<p className="text-left">
 						<span
-							className={`block font-semibold ${
+							className={`mb-1 block font-semibold ${
 								isActive ? "text-white" : "text-slate-900"
 							} lg:text-lg`}
 						>
@@ -57,8 +69,26 @@ const ProfileCard: FC<Card> = ({
 								isActive ? "text-slate-200" : "text-slate-600"
 							}`}
 						>
-							{username ? username : description}
+							{username ? (
+								<span className="inline-flex items-center">
+									<AtSymbolIcon className="h-3 w-3 lg:h-4 lg:w-4" />
+									<span>{username}</span>
+								</span>
+							) : (
+								description
+							)}
 						</span>
+						{totalGroupMembers && (
+							<span
+								className={`block text-sm font-light lg:text-base ${
+									isActive
+										? "text-slate-200"
+										: "text-slate-600"
+								}`}
+							>
+								<span>Total Members: {totalGroupMembers}</span>
+							</span>
+						)}
 					</p>
 				</div>
 			</button>
