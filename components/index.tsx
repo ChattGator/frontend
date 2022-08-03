@@ -4,3 +4,4 @@ export { default as Footer } from "./Footer";
 export { default as ProjectCard } from "./ProjectCard";
 export { default as Input } from "./Input";
 export {default as ProfileCard} from "./ProfileCard"
+export {default as Charts} from "./Charts";
