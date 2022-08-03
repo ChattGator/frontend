@@ -11,9 +11,10 @@ interface Props {
 interface DetailsCardProps {
 	image: string;
 	name: string;
+	isAdmin: boolean;
 }
 
-const DetailsCard: FC<DetailsCardProps> = ({ image, name }) => {
+const DetailsCard: FC<DetailsCardProps> = ({ image, name, isAdmin }) => {
 	const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
 	return (
@@ -36,6 +37,11 @@ const DetailsCard: FC<DetailsCardProps> = ({ image, name }) => {
 				/>
 			</div>
 			<p className="text-slate-600 lg:text-lg">{name}</p>
+			{isAdmin && (
+				<span className="rounded-lg bg-blue-200 px-2 py-1 text-xs font-semibold text-blue-600 lg:text-sm">
+					Group Admin
+				</span>
+			)}
 		</div>
 	);
 };
@@ -105,14 +111,17 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 						name="Team NPM"
+						isAdmin={true}
 					/>
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 						name="Team NPM"
+						isAdmin={false}
 					/>
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 						name="Team NPM"
+						isAdmin={false}
 					/>
 				</div>
 			</div>

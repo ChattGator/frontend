@@ -60,7 +60,7 @@ const Input: FC<InputProps> = ({ label, value, ...rest }) => {
 
 const ProjectDetailsCard: FC<Props> = ({ name, projectKey, projectSecret }) => {
 	return (
-		<div className="rounded-lg bg-white shadow-lg">
+		<div className="rounded-lg border-2 border-slate-200 bg-white">
 			<div className="space-y-4 border-b-2 border-slate-200 p-4 sm:flex sm:items-center sm:justify-between sm:space-y-0 lg:p-8">
 				<h3 className="text-3xl font-bold tracking-tight text-blue-600 lg:text-4xl">
 					{name}

@@ -93,7 +93,7 @@ const Projects: NextPage = () => {
 				</div>
 				<div className="grid gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
 					<Link href="/project/new">
-						<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-blue-600 p-4 text-center text-white shadow-lg transition-all active:bg-blue-100 lg:gap-4 lg:p-8">
+						<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-blue-600 p-4 text-center text-white transition-all active:bg-blue-100 lg:gap-4 lg:p-8">
 							<span>
 								<PlusCircleIcon className="mx-auto h-20 w-20 lg:h-24 lg:w-24" />
 							</span>
@@ -106,7 +106,7 @@ const Projects: NextPage = () => {
 								key={index}
 								link={link}
 								title={title}
-								desc={desc}
+								description={desc}
 								createdAt={createdAt}
 							/>
 						)

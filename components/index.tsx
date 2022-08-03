@@ -6,3 +6,4 @@ export { default as Input } from "./Input";
 export { default as ProfileCard } from "./ProfileCard";
 export { default as ProfileDetails } from "./ProfileDetails";
 export { default as ProjectDetailsCard } from "./ProjectDetailsCard";
+export { default as Toast } from "./Toast";
