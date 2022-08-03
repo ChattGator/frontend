@@ -1,4 +1,10 @@
-import { Head, Input, ProfileCard, ProfileDetails } from "@components";
+import {
+	Head,
+	Input,
+	ProfileCard,
+	ProfileDetails,
+	ProjectDetailsCard,
+} from "@components";
 import { useState } from "react";
 import type { FC } from "react";
 
@@ -44,24 +50,17 @@ const persons: Card[] = [
 ];
 
 const Dashboard: FC = () => {
-	const [state, setState] = useState<State>({ value: "", errorMessage: "" });
-
 	return (
 		<>
 			<Head title="Dashboard" />
 			<main className="container space-y-10 pb-24 lg:pb-32">
-				<div>
-					<Input
-						isRequired={true}
-						label="Name"
-						name="Name"
-						placeholder="Name"
-						type="text"
-						regex={/^[a-zA-z]+$/}
-						state={state}
-						setState={setState}
-					/>
-				</div>
+				<ProjectDetailsCard
+					projectKey="test"
+					name="Interesting Title"
+					projectSecret="test"
+					description="test"
+				/>
+				{/*
 				<div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
 					<div className="space-y-4 lg:space-y-8">
 						{persons.map(
@@ -77,7 +76,7 @@ const Dashboard: FC = () => {
 						)}
 					</div>
 					<ProfileDetails id="1" />
-				</div>
+				</div> */}
 			</main>
 		</>
 	);

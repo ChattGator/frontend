@@ -5,3 +5,4 @@ export { default as ProjectCard } from "./ProjectCard";
 export { default as Input } from "./Input";
 export { default as ProfileCard } from "./ProfileCard";
 export { default as ProfileDetails } from "./ProfileDetails";
+export { default as ProjectDetailsCard } from "./ProjectDetailsCard";
