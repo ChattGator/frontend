@@ -7,13 +7,49 @@ interface State {
 	errorMessage: string;
 }
 
+interface Card {
+	name: string;
+	username: string;
+	image: string;
+	isActive?: boolean;
+}
+
+const persons: Card[] = [
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+		isActive: true,
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+];
+
 const Dashboard: FC = () => {
 	const [state, setState] = useState<State>({ value: "", errorMessage: "" });
 
 	return (
 		<>
 			<Head title="Dashboard" />
-			<main className="container">
+			<main className="container space-y-10 pb-24 lg:pb-32">
 				<div>
 					<Input
 						isRequired={true}
@@ -26,10 +62,23 @@ const Dashboard: FC = () => {
 						setState={setState}
 					/>
 				</div>
+				<div className="grid grid-cols-1 lg:grid-cols-3">
+					<div className="space-y-4 rounded-lg bg-white p-4 shadow-lg lg:space-y-8 lg:p-8">
+						{persons.map(
+							({ name, image, username, isActive }, index) => (
+								<ProfileCard
+									key={index}
+									name={name}
+									image={image}
+									username={username}
+									isActive={isActive}
+								/>
+							)
+						)}
+					</div>
+					<div className="col-span-2"></div>
+				</div>
 			</main>
-			{/* <div className="h-full flex items-center justify-start ml-10">
-			<ProfileCard/>
-			</div> */}
 		</>
 	);
 };

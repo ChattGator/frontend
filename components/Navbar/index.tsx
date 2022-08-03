@@ -30,14 +30,14 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 
 	return (
 		<>
-			<header className="print:hidden">
+			<header className="mb-4 print:hidden lg:mb-8">
 				<nav
 					ref={ref}
-					className="container flex items-center justify-between py-1"
+					className="container flex items-center justify-between py-2 lg:py-4"
 					role="navigation"
 				>
 					<Link href="/">
-						<a className="rounded-lg py-2 text-3xl font-bold tracking-tighter text-slate-900 transition-colors active:text-blue-600 lg:text-4xl">
+						<a className="rounded-lg text-3xl font-bold tracking-tighter text-slate-900 transition-colors active:text-blue-600 lg:text-4xl">
 							ChattY
 						</a>
 					</Link>
@@ -63,6 +63,7 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 										isAvatarLoading && "animate-pulse"
 									}`}
 								>
+									{/* TODO (Vatsal): Change alt to user */}
 									<Image
 										src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 										alt="John Doe"
@@ -99,6 +100,7 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 													"animate-pulse"
 												}`}
 											>
+												{/* TODO (Vatsal): Change alt to user */}
 												<Image
 													src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 													alt="John Doe"
