@@ -1,4 +1,4 @@
-import { Head, Input, ProfileCard } from "@components";
+import { Head, Input, ProfileCard, ProfileDetails } from "@components";
 import { useState } from "react";
 import type { FC } from "react";
 
@@ -62,8 +62,8 @@ const Dashboard: FC = () => {
 						setState={setState}
 					/>
 				</div>
-				<div className="grid grid-cols-1 lg:grid-cols-3">
-					<div className="space-y-4 rounded-lg bg-white p-4 shadow-lg lg:space-y-8 lg:p-8">
+				<div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8">
+					<div className="space-y-4 lg:space-y-8">
 						{persons.map(
 							({ name, image, username, isActive }, index) => (
 								<ProfileCard
@@ -76,7 +76,7 @@ const Dashboard: FC = () => {
 							)
 						)}
 					</div>
-					<div className="col-span-2"></div>
+					<ProfileDetails id="1" />
 				</div>
 			</main>
 		</>
