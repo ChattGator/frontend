@@ -130,7 +130,7 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 								</Transition>
 							</li>
 							<li>
-								<button className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors lg:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
+								<button className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
 									Logout
 								</button>
 							</li>
@@ -152,7 +152,7 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 							</li>
 							<li>
 								<Link href="/register">
-									<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors lg:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
+									<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
 										Register
 									</a>
 								</Link>
