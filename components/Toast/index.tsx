@@ -3,40 +3,45 @@ import {
 	CheckCircleIcon,
 	XCircleIcon,
 	ExclamationCircleIcon,
-	XIcon,
 } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
+import { useToast } from "@contexts";
 import type { FC } from "react";
 
+type Type = "success" | "error" | "info";
+
 interface Props {
-	type: string;
+	index: number;
+	type: Type;
 	message: string;
 }
 
-const Toast: FC<Props> = ({ type, message }) => {
+const Toast: FC<Props> = ({ index, type, message }) => {
 	const [isShowing, setIsShowing] = useState(true);
+	const { removeToast } = useToast();
 
-	// useEffect(() => {
-	// 	const interval = setInterval(() => {
-	// 		setIsShowing(false);
-	// 	}, 5000);
-	// 	return () => {
-	// 		clearInterval(interval);
-	// 	};
-	// }, []);
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setIsShowing(false);
+			removeToast(index);
+		}, 5000);
+		return () => {
+			clearInterval(interval);
+		};
+	}, [index, removeToast]);
 
 	const renderIcon = (type: string) => {
 		if (type === "success")
 			return (
-				<CheckCircleIcon className="h-5 w-5 text-green-600 lg:h-7 lg:w-7" />
+				<CheckCircleIcon className="h-6 w-6 text-green-600 lg:h-8 lg:w-8" />
 			);
 		if (type === "error")
 			return (
-				<XCircleIcon className="h-5 w-5 text-red-600 lg:h-7 lg:w-7" />
+				<XCircleIcon className="h-6 w-6 text-red-600 lg:h-8 lg:w-8" />
 			);
 		if (type === "info")
 			return (
-				<ExclamationCircleIcon className="h-5 w-5 text-blue-600 lg:h-7 lg:w-7" />
+				<ExclamationCircleIcon className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
 			);
 	};
 
@@ -51,28 +56,23 @@ const Toast: FC<Props> = ({ type, message }) => {
 	};
 
 	return (
-		<>
-			<div className="fixed right-0 top-16 z-40 w-full space-y-3 px-5 md:right-5 md:top-24 md:w-96 md:px-0">
-				<Transition
-					as="button"
-					show={isShowing}
-					enter="transition transform"
-					enterFrom="translate-x-full opacity-0"
-					enterTo="translate-x-0 opacity-100"
-					leave="transition transform"
-					leaveFrom="translate-x-0 opacity-100"
-					leaveTo="translate-x-full opacity-0"
-					onClick={() => deleteToast()}
-					className={`relative flex w-full cursor-pointer items-center gap-1 rounded-lg border-2 bg-white p-3 text-xs text-slate-600 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600/80 focus:ring-offset-2 lg:gap-3 lg:text-sm ${getBorderColor(
-						type
-					)}`}
-				>
-					<span>{renderIcon(type)}</span>
-					<span>{message}</span>
-					<XIcon className="absolute top-1 right-1 h-4 w-4 text-slate-900" />
-				</Transition>
-			</div>
-		</>
+		<Transition
+			as="button"
+			show={isShowing}
+			enter="transition transform"
+			enterFrom="translate-y-full opacity-0"
+			enterTo="translate-y-0 opacity-100"
+			leave="transition transform"
+			leaveFrom="translate-y-0 opacity-100"
+			leaveTo="translate-y-full opacity-0"
+			onClick={() => deleteToast()}
+			className={`flex w-full items-center space-x-1 rounded-lg border-2 bg-white p-2 text-left text-xs text-slate-600 lg:space-x-2 lg:p-4 lg:text-sm ${getBorderColor(
+				type
+			)}`}
+		>
+			<span>{renderIcon(type)}</span>
+			<span>{message}</span>
+		</Transition>
 	);
 };
 
