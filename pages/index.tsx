@@ -20,11 +20,11 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head />
-			<main className="container pb-24 lg:pb-32">
+			<main className="container space-y-4 pb-24 lg:pb-32">
 				<h1 className="text-center text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">
 					Landing Page
 				</h1>
-				<div className="space-x-2">
+				<div className="space-x-2 text-center">
 					<button onClick={handleClick1}>Add Toast 1</button>
 					<button onClick={handleClick2}>Add Toast 2</button>
 					<button onClick={handleClick3}>Add Toast 3</button>
