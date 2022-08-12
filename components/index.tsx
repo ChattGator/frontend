@@ -8,3 +8,5 @@ export { default as ProfileDetails } from "./ProfileDetails";
 export { default as ProjectDetailsCard } from "./ProjectDetailsCard";
 export { default as Toast } from "./Toast";
 export { default as ToastContainer } from "./ToastContainer";
+export { default as GitHubIcon } from "./GitHubIcon";
+export { default as GoogleIcon } from "./GoogleIcon";

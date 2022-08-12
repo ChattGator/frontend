@@ -8,17 +8,17 @@ interface Toast {
 	message: string;
 }
 
-interface ToastContext {
+interface ToastContextProps {
 	toasts: Toast[];
 	addToast: (toast: Toast) => void;
 	removeToast: (index: number) => void;
 }
 
-const ToastContext = createContext<ToastContext | undefined>(undefined);
-
 interface ToastProviderProps {
 	children: ReactNode;
 }
+
+const ToastContext = createContext<ToastContextProps | undefined>(undefined);
 
 export const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
 	const [toasts, setToasts] = useState<Toast[]>([]);
@@ -40,7 +40,7 @@ export const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
 	);
 };
 
-export const useToast = () => {
+export const useToast: () => ToastContextProps = () => {
 	const context = useContext(ToastContext);
 	if (context === undefined)
 		throw new Error("useToast must be used within a ToastProvider");

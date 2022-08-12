@@ -1,32 +1,85 @@
-import { Head } from "@components";
+import Link from "next/link";
+import { Head, GoogleIcon, GitHubIcon } from "@components";
+import { auth } from "@lib";
+import {
+	signInWithPopup,
+	GithubAuthProvider,
+	GoogleAuthProvider,
+} from "firebase/auth";
+import { useUser } from "@contexts";
 import type { NextPage } from "next";
 
 const Login: NextPage = () => {
+	const { setLoading, setUser } = useUser();
+
+	const handleLogin: (type: string) => void = async (type) => {
+		try {
+			let res, token;
+			switch (type) {
+				case "GitHub":
+					res = await signInWithPopup(auth, new GithubAuthProvider());
+					token = await res.user.getIdToken();
+					setUser({
+						name: res.user.displayName,
+						email: res.user.email,
+						avatar: res.user.photoURL,
+						token,
+					});
+				case "Google":
+					res = await signInWithPopup(auth, new GoogleAuthProvider());
+					token = await res.user.getIdToken();
+					setUser({
+						name: res.user.displayName,
+						email: res.user.email,
+						avatar: res.user.photoURL,
+						token,
+					});
+					break;
+				default:
+					break;
+			}
+		} catch (err) {
+			console.error(err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
 		<>
-			<Head />
+			<Head title="Login" />
 			<main className="container pb-24 lg:pb-32">
-                    <div className="container px-5 py-24 mx-auto p-4 md:w-1/3">
-                            <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                                <div className="flex items-center mb-3">
-                                    <h2 className="text-blue-600 text-4xl font-bold mx-auto mb-12">Login</h2>
-                                </div>
-                                <div className="flex-grow">
-                                    <a
-                                    href="#"
-                                    className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-700 rounded-md group hover:bg-blue-700 focus:outline-none">
-                                        <span>
-                                            <img
-                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png"
-                                                className="w-6 h-6"
-                                            >
-                                            </img>
-                                        </span>
-                                        <span className="text-lg font-medium text-blue-700 group-hover:text-white">Google</span>
-                                    </a>
-                                </div>
-                            </div>
-                    </div>
+				<div className="mx-auto rounded-lg border-2 border-slate-200 bg-white">
+					<h1 className="border-b-2 border-slate-200 p-4 text-4xl font-bold tracking-tighter text-slate-900 lg:p-8 lg:text-5xl">
+						Login to your account
+					</h1>
+					<div className="space-y-2 px-4 py-2 lg:space-y-4 lg:py-8 lg:px-8">
+						<div className="grid grid-cols-1 space-y-2 sm:w-96 lg:space-y-4">
+							<button
+								onClick={() => handleLogin("GitHub")}
+								className="inline-flex items-center justify-center space-x-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-8 lg:py-4 lg:text-base"
+							>
+								<GitHubIcon className="h-5 w-5" />
+								<span>GitHub</span>
+							</button>
+							<button
+								onClick={() => handleLogin("Google")}
+								className="inline-flex items-center justify-center space-x-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-8 lg:py-4 lg:text-base"
+							>
+								<GoogleIcon className="h-5 w-5" />
+								<span>Google</span>
+							</button>
+						</div>
+						<p className="space-x-1 text-sm text-slate-600 lg:text-base">
+							<span>Don&apos;t have an account?</span>
+							<Link href="/register">
+								<a className="font-medium text-blue-600 hover:underline">
+									Register here
+								</a>
+							</Link>
+						</p>
+					</div>
+				</div>
 			</main>
 		</>
 	);
