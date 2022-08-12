@@ -74,11 +74,11 @@ const Projects: NextPage = () => {
 		<>
 			<Head title="Dashboard" />
 			<main className="container space-y-4 pb-24 lg:space-y-8 lg:pb-32">
-				<div className="space-y-4 lg:flex lg:items-center lg:justify-between lg:space-y-0 lg:space-x-8">
+				<div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
 					<h1 className="text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">
 						My Projects
 					</h1>
-					<div className="relative">
+					<div className="relative xl:col-start-3">
 						<span className="sr-only">Search</span>
 						<span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
 							<SearchIcon className="h-5 w-5 text-slate-400" />
