@@ -40,7 +40,7 @@ const ProfileCard: FC<Props & ConditionalProps> = ({
 			>
 				<div className="flex items-center space-x-2 lg:space-x-4">
 					<div
-						className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
+						className={`h-12 w-12 flex-shrink-0 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
 							isImageLoading && "animate-pulse"
 						}`}
 					>

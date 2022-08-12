@@ -41,25 +41,33 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 							ChattY
 						</a>
 					</Link>
-					{isAuthenticated ? (
-						<ul className="flex items-center gap-2 lg:gap-4">
-							<li>
-								<Link href="/project">
-									<a
-										className={`${
-											router.pathname == "/project"
-												? "font-semibold text-slate-900"
-												: "font-normal text-slate-600"
-										} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
-									>
-										My Projects
-									</a>
-								</Link>
-							</li>
-							<li className="relative">
+					<ul className="relative flex items-center space-x-1 lg:space-x-2">
+						<li>
+							<a
+								href="#"
+								className="rounded-lg px-2 py-1 text-sm font-normal text-slate-600 transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base"
+							>
+								Docs
+							</a>
+						</li>
+						{isAuthenticated ? (
+							<>
+								<li>
+									<Link href="/project">
+										<a
+											className={`${
+												router.pathname == "/project"
+													? "font-semibold text-slate-900"
+													: "font-normal text-slate-600"
+											} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
+										>
+											My Projects
+										</a>
+									</Link>
+								</li>
 								<button
 									onClick={handleToggleProfile}
-									className={`h-8 w-8 rounded-full bg-slate-200 lg:h-12 lg:w-12 ${
+									className={`ml-2 h-10 w-10 rounded-full bg-slate-200 lg:ml-4 lg:h-12 lg:w-12 ${
 										isAvatarLoading && "animate-pulse"
 									}`}
 								>
@@ -86,7 +94,7 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 									leaveFrom="translate-y-0 opacity-100"
 									leaveTo="-translate-y-1/4 opacity-0"
 								>
-									<div className="absolute top-12 right-1/2 z-50 w-48 translate-x-1/2 space-y-2 rounded-lg bg-white p-8 text-center shadow-lg lg:top-16 lg:w-64 lg:space-y-4">
+									<div className="absolute top-14 right-0 z-50 w-48 space-y-2 rounded-lg bg-white p-4 text-center shadow-lg lg:top-16 lg:w-64 lg:space-y-4 lg:p-8">
 										<button
 											onClick={handleToggleProfile}
 											className="absolute top-4 right-4 rounded-lg p-0.5"
@@ -126,39 +134,39 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 												email@email.com
 											</p>
 										</div>
+										<div>
+											<button className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
+												Logout
+											</button>
+										</div>
 									</div>
 								</Transition>
-							</li>
-							<li>
-								<button className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
-									Logout
-								</button>
-							</li>
-						</ul>
-					) : (
-						<ul className="flex items-center gap-2 lg:gap-4">
-							<li>
-								<Link href="/login">
-									<a
-										className={`${
-											router.pathname == "/login"
-												? "font-semibold text-slate-900"
-												: "font-normal text-slate-600"
-										} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
-									>
-										Login
-									</a>
-								</Link>
-							</li>
-							<li>
-								<Link href="/register">
-									<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
-										Register
-									</a>
-								</Link>
-							</li>
-						</ul>
-					)}
+							</>
+						) : (
+							<>
+								<li>
+									<Link href="/login">
+										<a
+											className={`${
+												router.pathname == "/login"
+													? "font-semibold text-slate-900"
+													: "font-normal text-slate-600"
+											} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
+										>
+											Login
+										</a>
+									</Link>
+								</li>
+								<li>
+									<Link href="/register">
+										<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
+											Register
+										</a>
+									</Link>
+								</li>
+							</>
+						)}
+					</ul>
 				</nav>
 			</header>
 		</>

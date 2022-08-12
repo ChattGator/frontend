@@ -12,23 +12,25 @@ interface Props {
 const ProjectCard: FC<Props> = ({ link, title, description, createdAt }) => {
 	return (
 		<Link href={link}>
-			<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-white p-4 text-center shadow-lg transition-all hover:shadow-blue-200 active:bg-blue-100 lg:gap-4 lg:p-8">
-				<h2 className="text-2xl font-semibold text-blue-600 lg:text-3xl">
+			<a className="aspect-video rounded-lg border-2 border-slate-200 bg-white transition-colors hover:border-blue-600 active:bg-blue-100">
+				<h2 className="border-b-2 border-slate-200 py-2 px-4 text-2xl font-semibold text-blue-600 lg:py-4 lg:px-8 lg:text-3xl">
 					{title}
 				</h2>
-				<p className="text-slate-600 lg:text-lg">{description}</p>
-				<p className="flex items-center justify-center space-x-1 text-sm font-light text-slate-400 lg:text-base">
-					<span>
-						<ClockIcon className="h-4 w-4 lg:h-5 lg:w-5" />
-					</span>
-					<span>
-						{createdAt.toLocaleDateString("en-US", {
-							year: "numeric",
-							month: "long",
-							day: "numeric",
-						})}
-					</span>
-				</p>
+				<div className="space-y-2 py-2 px-4 lg:space-y-4 lg:py-4 lg:px-8">
+					<p className="text-slate-600 lg:text-lg">{description}</p>
+					<p className="flex items-center space-x-1 text-sm font-light text-slate-400 lg:text-base">
+						<span>
+							<ClockIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+						</span>
+						<span>
+							{createdAt.toLocaleDateString("en-US", {
+								year: "numeric",
+								month: "long",
+								day: "numeric",
+							})}
+						</span>
+					</p>
+				</div>
 			</a>
 		</Link>
 	);

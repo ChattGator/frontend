@@ -77,7 +77,7 @@ const Input: FC<Props> = ({
 				{...rest}
 			/>
 			{state.errorMessage && (
-				<p className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 lg:text-sm">
+				<p className="inline-flex items-center space-x-1 text-xs font-semibold text-red-600 lg:text-sm">
 					<ExclamationCircleIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 					{state.errorMessage}
 				</p>
