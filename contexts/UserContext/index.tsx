@@ -12,7 +12,7 @@ interface UserContextProps {
 	loading: boolean;
 	setLoading: (loading: boolean) => void;
 	user: User | null;
-	setUser: (user: User) => void;
+	setUser: (user: User | null) => void;
 }
 
 interface UserProviderProps {

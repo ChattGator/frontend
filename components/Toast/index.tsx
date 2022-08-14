@@ -21,12 +21,12 @@ const Toast: FC<Props> = ({ index, type, message }) => {
 	const { removeToast } = useToast();
 
 	useEffect(() => {
-		const interval = setInterval(() => {
+		const timeout = setTimeout(() => {
 			setIsShowing(false);
 			removeToast(index);
 		}, 5000);
 		return () => {
-			clearInterval(interval);
+			clearTimeout(timeout);
 		};
 	}, [index, removeToast]);
 

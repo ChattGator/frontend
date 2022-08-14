@@ -4,13 +4,16 @@ import { Transition } from "@headlessui/react";
 import { useRouter, NextRouter } from "next/router";
 import { useState, useEffect, useRef, Fragment } from "react";
 import { XIcon } from "@heroicons/react/outline";
+import { auth } from "@lib";
+import { useUser } from "@contexts";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import type { FC, RefObject } from "react";
 
 interface Props {
 	isAuthenticated: boolean;
 }
 
-const Navbar: FC<Props> = ({ isAuthenticated }) => {
+const Navbar: FC<Props> = () => {
 	const [isAvatarLoading, setIsAvatarLoading] = useState<boolean>();
 	const [toggleProfile, setToggleProfile] = useState<boolean>(false);
 	const router: NextRouter = useRouter();
@@ -27,6 +30,36 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 		document.addEventListener("click", handleClickOutside);
 		return () => document.removeEventListener("click", handleClickOutside);
 	});
+
+	const { loading, setLoading, user, setUser } = useUser();
+
+	useEffect(() => {
+		try {
+			const unsubscribe = onAuthStateChanged(auth, async (user) => {
+				if (user) {
+					const token = await user.getIdToken();
+					setUser({
+						name: user.displayName,
+						email: user.email,
+						avatar: user.photoURL,
+						token,
+					});
+				} else {
+					setUser(null);
+				}
+			});
+			return () => unsubscribe();
+		} catch (err) {
+			console.error(err);
+		} finally {
+			setLoading(false);
+		}
+	}, [setUser, setLoading]);
+
+	const handleLogout = async () => {
+		await signOut(auth);
+		setUser(null);
+	};
 
 	return (
 		<>
@@ -50,7 +83,9 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 								Docs
 							</a>
 						</li>
-						{isAuthenticated ? (
+						{loading ? (
+							<div className="h-12 w-32 animate-pulse rounded-lg bg-slate-200 lg:h-16 lg:w-52"></div>
+						) : user ? (
 							<>
 								<li>
 									<Link href="/project">
@@ -73,8 +108,13 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 								>
 									{/* TODO (Vatsal): Change alt to user */}
 									<Image
-										src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-										alt="John Doe"
+										src={
+											user.avatar ??
+											`https://ui-avatars.com/api/name=${
+												user.name ?? "Unknown Name"
+											}?&background=random`
+										}
+										alt={user.name ?? "Unknown Name"}
 										width="1"
 										height="1"
 										layout="responsive"
@@ -110,8 +150,17 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 											>
 												{/* TODO (Vatsal): Change alt to user */}
 												<Image
-													src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-													alt="John Doe"
+													src={
+														user.avatar ??
+														`https://ui-avatars.com/api/name=${
+															user.name ??
+															"Unknown Name"
+														}?&background=random`
+													}
+													alt={
+														user.name ??
+														"Unknown Name"
+													}
 													width="1"
 													height="1"
 													layout="responsive"
@@ -128,14 +177,18 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 										</div>
 										<div>
 											<p className="text-lg font-semibold text-slate-900 lg:text-xl">
-												John Doe
+												{user.name ?? "Unknown Name"}
 											</p>
 											<p className="select-all text-sm text-slate-600 lg:text-base">
-												email@email.com
+												{user.email ??
+													"email@email.com"}
 											</p>
 										</div>
 										<div>
-											<button className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
+											<button
+												onClick={handleLogout}
+												className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base"
+											>
 												Logout
 											</button>
 										</div>
