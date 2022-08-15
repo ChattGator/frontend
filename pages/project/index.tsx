@@ -46,8 +46,7 @@ const cards: ProjectCard[] = [
 
 const Projects: NextPage = () => {
 	const [search, setSearch] = useState<string>("");
-	const [filteredProjects, setFilteredProjects] =
-		useState<ProjectCard[]>(cards);
+	const [filteredProjects, setFilteredProjects] = useState<ProjectCard[]>(cards);
 
 	useEffect(() => {
 		const searchValue = search.toLowerCase().trim();
@@ -75,9 +74,7 @@ const Projects: NextPage = () => {
 			<Head title="Dashboard" />
 			<main className="container space-y-4 pb-24 lg:space-y-8 lg:pb-32">
 				<div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
-					<h1 className="text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">
-						My Projects
-					</h1>
+					<h1 className="text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">My Projects</h1>
 					<div className="relative xl:col-start-3">
 						<span className="sr-only">Search</span>
 						<span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
@@ -102,17 +99,15 @@ const Projects: NextPage = () => {
 							<p className="lg:text-lg">Create new project</p>
 						</a>
 					</Link>
-					{filteredProjects.map(
-						({ link, title, desc, createdAt }, index) => (
-							<ProjectCard
-								key={index}
-								link={link}
-								title={title}
-								description={desc}
-								createdAt={createdAt}
-							/>
-						)
-					)}
+					{filteredProjects.map(({ link, title, desc, createdAt }, index) => (
+						<ProjectCard
+							key={index}
+							link={link}
+							title={title}
+							description={desc}
+							createdAt={createdAt}
+						/>
+					))}
 				</div>
 			</main>
 		</>

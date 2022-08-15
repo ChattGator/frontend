@@ -15,14 +15,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 	setState: Dispatch<SetStateAction<State>>;
 }
 
-const Input: FC<Props> = ({
-	isRequired,
-	regex,
-	label,
-	state,
-	setState,
-	...rest
-}) => {
+const Input: FC<Props> = ({ isRequired, regex, label, state, setState, ...rest }) => {
 	const id: string = useId();
 	const didMount = useRef<boolean>(false);
 
@@ -55,11 +48,7 @@ const Input: FC<Props> = ({
 				className="block w-full text-xs font-semibold text-slate-600 lg:text-sm"
 			>
 				<span
-					className={`space-x-1 ${
-						isRequired
-							? "after:ml-0.5 after:text-red-600 after:content-['*']"
-							: ""
-					}`}
+					className={`space-x-1 ${isRequired ? "after:ml-0.5 after:text-red-600 after:content-['*']" : ""}`}
 				>
 					{label}
 				</span>

@@ -1,9 +1,4 @@
-import {
-	Head,
-	ProfileCard,
-	ProfileDetails,
-	ProjectDetailsCard,
-} from "@components";
+import { Head, ProfileCard, ProfileDetails, ProjectDetailsCard } from "@components";
 import { useState, Fragment } from "react";
 import { Tab } from "@headlessui/react";
 import type { FC } from "react";
@@ -45,16 +40,14 @@ const persons: User[] = [
 const groups: Group[] = [
 	{
 		name: "John Doe",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, praesentium?",
+		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, praesentium?",
 		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
 		isActive: true,
 		totalGroupMembers: 10,
 	},
 	{
 		name: "John Doe",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, praesentium?",
+		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, praesentium?",
 		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
 		totalGroupMembers: 5,
 	},
@@ -102,9 +95,7 @@ const Dashboard: FC = () => {
 					<Tab.Panels as={Fragment}>
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							<div className="space-y-3 lg:space-y-5">
-								<h1 className="text-3xl font-bold tracking-tighter text-zinc-900 lg:text-4xl">
-									Stats
-								</h1>
+								<h1 className="text-3xl font-bold tracking-tighter text-zinc-900 lg:text-4xl">Stats</h1>
 							</div>
 						</Tab.Panel>
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
@@ -117,20 +108,15 @@ const Dashboard: FC = () => {
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							<div className="grid grid-cols-1 lg:grid-cols-3 lg:divide-x-2 lg:divide-slate-200">
 								<div className="space-y-2 pr-4 lg:space-y-4 lg:pr-8">
-									{persons.map(
-										(
-											{ image, name, username, isActive },
-											index
-										) => (
-											<ProfileCard
-												key={index}
-												image={image}
-												name={name}
-												isActive={isActive}
-												username={username}
-											/>
-										)
-									)}
+									{persons.map(({ image, name, username, isActive }, index) => (
+										<ProfileCard
+											key={index}
+											image={image}
+											name={name}
+											isActive={isActive}
+											username={username}
+										/>
+									))}
 								</div>
 								<div className="col-span-2 pl-4 lg:pl-8">
 									<ProfileDetails id="1" />
@@ -140,29 +126,16 @@ const Dashboard: FC = () => {
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							<div className="grid grid-cols-1 lg:grid-cols-3 lg:divide-x-2 lg:divide-slate-200">
 								<div className="space-y-2 pr-4 lg:space-y-4 lg:pr-8">
-									{groups.map(
-										(
-											{
-												image,
-												name,
-												description,
-												isActive,
-												totalGroupMembers,
-											},
-											index
-										) => (
-											<ProfileCard
-												key={index}
-												image={image}
-												name={name}
-												isActive={isActive}
-												description={description}
-												totalGroupMembers={
-													totalGroupMembers
-												}
-											/>
-										)
-									)}
+									{groups.map(({ image, name, description, isActive, totalGroupMembers }, index) => (
+										<ProfileCard
+											key={index}
+											image={image}
+											name={name}
+											isActive={isActive}
+											description={description}
+											totalGroupMembers={totalGroupMembers}
+										/>
+									))}
 								</div>
 								<div className="col-span-2 pl-4 lg:pl-8">
 									<ProfileDetails id="1" />

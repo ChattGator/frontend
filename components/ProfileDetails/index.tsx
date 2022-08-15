@@ -19,11 +19,7 @@ const DetailsCard: FC<DetailsCardProps> = ({ image, name, isAdmin }) => {
 
 	return (
 		<div className="flex items-center space-x-2 lg:space-x-4">
-			<div
-				className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
-					isImageLoading && "animate-pulse"
-				}`}
-			>
+			<div className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${isImageLoading && "animate-pulse"}`}>
 				<Image
 					src={image}
 					alt={name}
@@ -83,9 +79,7 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 				/>
 			</div>
 			<div className="text-center">
-				<p className="text-xl font-semibold text-slate-900 lg:text-2xl">
-					John Doe
-				</p>
+				<p className="text-xl font-semibold text-slate-900 lg:text-2xl">John Doe</p>
 				<p className="flex items-center justify-center font-light text-slate-600 lg:text-lg">
 					<span>
 						<AtSymbolIcon className="h-5 w-5 lg:h-6 lg:w-6" />
@@ -94,19 +88,14 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 				</p>
 			</div>
 			<div>
-				<span className="block text-sm font-semibold text-slate-900 lg:text-base">
-					Bio
-				</span>
+				<span className="block text-sm font-semibold text-slate-900 lg:text-base">Bio</span>
 				<p className="max-w-prose text-gray-600 lg:text-lg">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-					Voluptates in impedit ipsa quos facere adipisci quam
-					corrupti quod mollitia molestias?
+					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates in impedit ipsa quos facere
+					adipisci quam corrupti quod mollitia molestias?
 				</p>
 			</div>
 			<div className="space-y-2 lg:space-y-4">
-				<div className="text-sm font-semibold text-slate-900 lg:text-base">
-					3 groups joined
-				</div>
+				<div className="text-sm font-semibold text-slate-900 lg:text-base">3 groups joined</div>
 				<div className="space-y-2">
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"

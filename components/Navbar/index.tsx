@@ -4,9 +4,7 @@ import { Transition } from "@headlessui/react";
 import { useRouter, NextRouter } from "next/router";
 import { useState, useEffect, useRef, Fragment } from "react";
 import { XIcon } from "@heroicons/react/outline";
-import { auth } from "@lib";
 import { useUser } from "@contexts";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import type { FC, RefObject } from "react";
 
 interface Props {
@@ -19,47 +17,17 @@ const Navbar: FC<Props> = () => {
 	const router: NextRouter = useRouter();
 	const ref: RefObject<HTMLDivElement> = useRef(null);
 
-	const handleToggleProfile: () => void = () =>
-		setToggleProfile((toggleProfile) => !toggleProfile);
+	const handleToggleProfile: () => void = () => setToggleProfile((toggleProfile) => !toggleProfile);
 
 	useEffect(() => {
 		const handleClickOutside: (event: any) => void = (event) => {
-			if (ref.current && !ref.current.contains(event.target))
-				setToggleProfile(false);
+			if (ref.current && !ref.current.contains(event.target)) setToggleProfile(false);
 		};
 		document.addEventListener("click", handleClickOutside);
 		return () => document.removeEventListener("click", handleClickOutside);
 	});
 
-	const { loading, setLoading, user, setUser } = useUser();
-
-	useEffect(() => {
-		try {
-			const unsubscribe = onAuthStateChanged(auth, async (user) => {
-				if (user) {
-					const token = await user.getIdToken();
-					setUser({
-						name: user.displayName,
-						email: user.email,
-						avatar: user.photoURL,
-						token,
-					});
-				} else {
-					setUser(null);
-				}
-			});
-			return () => unsubscribe();
-		} catch (err) {
-			console.error(err);
-		} finally {
-			setLoading(false);
-		}
-	}, [setUser, setLoading]);
-
-	const handleLogout = async () => {
-		await signOut(auth);
-		setUser(null);
-	};
+	const { loading, user, logout } = useUser();
 
 	return (
 		<>
@@ -74,7 +42,7 @@ const Navbar: FC<Props> = () => {
 							ChattY
 						</a>
 					</Link>
-					<ul className="relative flex items-center space-x-1 lg:space-x-2">
+					<ul className="relative flex items-center space-x-2 lg:space-x-4">
 						<li>
 							<a
 								href="#"
@@ -96,7 +64,7 @@ const Navbar: FC<Props> = () => {
 													: "font-normal text-slate-600"
 											} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
 										>
-											My Projects
+											Projects
 										</a>
 									</Link>
 								</li>
@@ -144,8 +112,7 @@ const Navbar: FC<Props> = () => {
 										<div className="mx-auto w-fit rounded-full border-2 border-blue-600 p-1">
 											<div
 												className={`h-16 w-16 rounded-full bg-slate-200 lg:h-24 lg:w-24 ${
-													isAvatarLoading &&
-													"animate-pulse"
+													isAvatarLoading && "animate-pulse"
 												}`}
 											>
 												{/* TODO (Vatsal): Change alt to user */}
@@ -153,25 +120,17 @@ const Navbar: FC<Props> = () => {
 													src={
 														user.avatar ??
 														`https://ui-avatars.com/api/name=${
-															user.name ??
-															"Unknown Name"
+															user.name ?? "Unknown Name"
 														}?&background=random`
 													}
-													alt={
-														user.name ??
-														"Unknown Name"
-													}
+													alt={user.name ?? "Unknown Name"}
 													width="1"
 													height="1"
 													layout="responsive"
 													objectFit="cover"
 													objectPosition="center center"
 													className="rounded-full"
-													onLoad={() =>
-														setIsAvatarLoading(
-															false
-														)
-													}
+													onLoad={() => setIsAvatarLoading(false)}
 												/>
 											</div>
 										</div>
@@ -180,13 +139,12 @@ const Navbar: FC<Props> = () => {
 												{user.name ?? "Unknown Name"}
 											</p>
 											<p className="select-all text-sm text-slate-600 lg:text-base">
-												{user.email ??
-													"email@email.com"}
+												{user.email ?? "email@email.com"}
 											</p>
 										</div>
 										<div>
 											<button
-												onClick={handleLogout}
+												onClick={logout}
 												className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base"
 											>
 												Logout

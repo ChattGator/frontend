@@ -16,7 +16,7 @@ const headers: Readonly<Record<string, string>> = {
 	"Content-Type": "application/json",
 };
 
-export class HttpClient {
+class HttpClient {
 	private instance: AxiosInstance | null = null;
 	protected readonly isStub: boolean;
 
@@ -46,10 +46,7 @@ export class HttpClient {
 		return http;
 	}
 
-	protected async get<T = any, R = AxiosResponse<T>>(
-		url: string,
-		config?: AxiosRequestConfig
-	): Promise<R> {
+	protected async get<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
 		return this.http.get<T, R>(url, config);
 	}
 
@@ -61,18 +58,11 @@ export class HttpClient {
 		return this.http.post<T, R>(url, data, config);
 	}
 
-	protected async put<T = any, R = AxiosResponse<T>>(
-		url: string,
-		data?: T,
-		config?: AxiosRequestConfig
-	): Promise<R> {
+	protected async put<T = any, R = AxiosResponse<T>>(url: string, data?: T, config?: AxiosRequestConfig): Promise<R> {
 		return this.http.put<T, R>(url, data, config);
 	}
 
-	protected async delete<T = any, R = AxiosResponse<T>>(
-		url: string,
-		config?: AxiosRequestConfig
-	): Promise<R> {
+	protected async delete<T = any, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> {
 		return this.http.delete<T, R>(url, config);
 	}
 
@@ -81,25 +71,21 @@ export class HttpClient {
 
 		switch (status) {
 			case StatusCode.InternalServerError: {
-				throw new Error(
-					`Error InternalServerError(${StatusCode.InternalServerError})`
-				);
+				throw new Error(`Error InternalServerError(${StatusCode.InternalServerError})`);
 			}
 			case StatusCode.Forbidden: {
 				throw new Error(`Error Forbidden(${StatusCode.Forbidden})`);
 			}
 			case StatusCode.Unauthorized: {
-				throw new Error(
-					`Error Unauthorized(${StatusCode.Unauthorized})`
-				);
+				throw new Error(`Error Unauthorized(${StatusCode.Unauthorized})`);
 			}
 			case StatusCode.TooManyRequests: {
-				throw new Error(
-					`Error TooManyRequests(${StatusCode.TooManyRequests})`
-				);
+				throw new Error(`Error TooManyRequests(${StatusCode.TooManyRequests})`);
 			}
 		}
 
 		return Promise.reject(error);
 	}
 }
+
+export default HttpClient;

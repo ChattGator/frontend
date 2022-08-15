@@ -81,9 +81,7 @@ const ProfileCard: FC<Props & ConditionalProps> = ({
 						{totalGroupMembers && (
 							<span
 								className={`block text-sm font-light lg:text-base ${
-									isActive
-										? "text-slate-200"
-										: "text-slate-600"
+									isActive ? "text-slate-200" : "text-slate-600"
 								}`}
 							>
 								<span>Total Members: {totalGroupMembers}</span>

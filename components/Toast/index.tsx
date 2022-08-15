@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	CheckCircleIcon,
-	XCircleIcon,
-	ExclamationCircleIcon,
-} from "@heroicons/react/solid";
+import { CheckCircleIcon, XCircleIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
 import { Transition } from "@headlessui/react";
 import { useToast } from "@contexts";
 import type { FC } from "react";
@@ -31,18 +27,9 @@ const Toast: FC<Props> = ({ index, type, message }) => {
 	}, [index, removeToast]);
 
 	const renderIcon = (type: string) => {
-		if (type === "success")
-			return (
-				<CheckCircleIcon className="h-6 w-6 text-green-600 lg:h-8 lg:w-8" />
-			);
-		if (type === "error")
-			return (
-				<XCircleIcon className="h-6 w-6 text-red-600 lg:h-8 lg:w-8" />
-			);
-		if (type === "info")
-			return (
-				<ExclamationCircleIcon className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
-			);
+		if (type === "success") return <CheckCircleIcon className="h-6 w-6 text-green-600 lg:h-8 lg:w-8" />;
+		if (type === "error") return <XCircleIcon className="h-6 w-6 text-red-600 lg:h-8 lg:w-8" />;
+		if (type === "info") return <ExclamationCircleIcon className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />;
 	};
 
 	const getBorderColor = (type: string) => {

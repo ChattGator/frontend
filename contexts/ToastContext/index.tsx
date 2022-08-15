@@ -33,16 +33,11 @@ export const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
 		setToasts(allToasts);
 	};
 
-	return (
-		<ToastContext.Provider value={{ toasts, addToast, removeToast }}>
-			{children}
-		</ToastContext.Provider>
-	);
+	return <ToastContext.Provider value={{ toasts, addToast, removeToast }}>{children}</ToastContext.Provider>;
 };
 
 export const useToast: () => ToastContextProps = () => {
 	const context = useContext(ToastContext);
-	if (context === undefined)
-		throw new Error("useToast must be used within a ToastProvider");
+	if (context === undefined) throw new Error("useToast must be used within a ToastProvider");
 	return context;
 };

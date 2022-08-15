@@ -25,9 +25,7 @@ const Login: NextPage = () => {
 						<p className="space-x-1 text-sm text-slate-600 lg:text-base">
 							<span>Already have an account?</span>
 							<Link href="/register">
-								<a className="font-medium text-blue-600 hover:underline">
-									Login here
-								</a>
+								<a className="font-medium text-blue-600 hover:underline">Login here</a>
 							</Link>
 						</p>
 					</div>
