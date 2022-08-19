@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AtSymbolIcon } from "@heroicons/react/outline";
-import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
 import type { FC } from "react";
 
 interface Props {
@@ -50,7 +50,7 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 			<div className="space-x-2 text-right lg:space-x-4">
 				<button className="inline-flex items-center space-x-1 rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
 					<span>
-						<PencilAltIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+						<PencilIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 					</span>
 					<span>Edit</span>
 				</button>

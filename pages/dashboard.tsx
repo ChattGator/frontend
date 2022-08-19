@@ -35,19 +35,124 @@ const persons: User[] = [
 		username: "johndoe",
 		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
 	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
+	{
+		name: "John Doe",
+		username: "johndoe",
+		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+	},
 ];
 
 const groups: Group[] = [
 	{
 		name: "John Doe",
-		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, praesentium?",
+		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad?",
 		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
 		isActive: true,
 		totalGroupMembers: 10,
 	},
 	{
 		name: "John Doe",
-		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, praesentium?",
+		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad?",
 		image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
 		totalGroupMembers: 5,
 	},
@@ -106,8 +211,8 @@ const Dashboard: FC = () => {
 							</div>
 						</Tab.Panel>
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
-							<div className="grid grid-cols-1 lg:grid-cols-3 lg:divide-x-2 lg:divide-slate-200">
-								<div className="space-y-2 pr-4 lg:space-y-4 lg:pr-8">
+							<div className="grid grid-cols-1 divide-y-2 divide-slate-200 lg:grid-cols-3 lg:divide-x-2 lg:divide-y-0">
+								<div className="max-h-96 space-y-2 overflow-y-auto pb-4 lg:max-h-[48rem] lg:space-y-4 lg:pr-8">
 									{persons.map(({ image, name, username, isActive }, index) => (
 										<ProfileCard
 											key={index}
@@ -118,14 +223,14 @@ const Dashboard: FC = () => {
 										/>
 									))}
 								</div>
-								<div className="col-span-2 pl-4 lg:pl-8">
+								<div className="col-span-2 max-h-96 overflow-y-auto pt-4 lg:max-h-[48rem] lg:pl-8">
 									<ProfileDetails id="1" />
 								</div>
 							</div>
 						</Tab.Panel>
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
-							<div className="grid grid-cols-1 lg:grid-cols-3 lg:divide-x-2 lg:divide-slate-200">
-								<div className="space-y-2 pr-4 lg:space-y-4 lg:pr-8">
+							<div className="grid grid-cols-1 divide-y-2 divide-slate-200 lg:grid-cols-3 lg:divide-x-2 lg:divide-y-0">
+								<div className="max-h-96 space-y-2 overflow-y-auto pb-4 lg:max-h-[48rem] lg:space-y-4 lg:pr-8">
 									{groups.map(({ image, name, description, isActive, totalGroupMembers }, index) => (
 										<ProfileCard
 											key={index}
@@ -137,7 +242,7 @@ const Dashboard: FC = () => {
 										/>
 									))}
 								</div>
-								<div className="col-span-2 pl-4 lg:pl-8">
+								<div className="col-span-2 max-h-96 overflow-y-auto pt-4 lg:max-h-[48rem] lg:pl-8">
 									<ProfileDetails id="1" />
 								</div>
 							</div>

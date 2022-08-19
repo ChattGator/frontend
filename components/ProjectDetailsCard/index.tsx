@@ -1,4 +1,4 @@
-import { PencilAltIcon, TrashIcon, ClipboardCopyIcon, ClipboardCheckIcon } from "@heroicons/react/solid";
+import { PencilIcon, TrashIcon, ClipboardCopyIcon, ClipboardCheckIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import type { FC, InputHTMLAttributes } from "react";
 
@@ -61,7 +61,7 @@ const ProjectDetailsCard: FC<Props> = ({ name, projectKey, projectSecret }) => {
 				<div className="space-x-2 lg:space-x-4">
 					<button className="inline-flex items-center space-x-1 rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
 						<span>
-							<PencilAltIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+							<PencilIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 						</span>
 						<span>Edit</span>
 					</button>

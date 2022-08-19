@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { ProjectCard, Head } from "@components";
-import { PlusCircleIcon, SearchIcon } from "@heroicons/react/outline";
+import { Head, ProjectCard, Search } from "@components";
+import { useSearch } from "@hooks";
+import { PlusCircleIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
 
 interface ProjectCard {
@@ -45,29 +45,7 @@ const cards: ProjectCard[] = [
 ];
 
 const Projects: NextPage = () => {
-	const [search, setSearch] = useState<string>("");
-	const [filteredProjects, setFilteredProjects] = useState<ProjectCard[]>(cards);
-
-	useEffect(() => {
-		const searchValue = search.toLowerCase().trim();
-
-		const filteredList1 = cards.filter((project) => {
-			const title = project.title.toLowerCase();
-			if (search === "") return project;
-			else if (title.startsWith(searchValue)) return project;
-			return null;
-		});
-
-		const filteredList2 = cards.filter((project) => {
-			const title = project.title.toLowerCase();
-			if (search === "") return project;
-			else if (title.includes(searchValue)) return project;
-			return null;
-		});
-
-		const set = new Set<ProjectCard>([...filteredList1, ...filteredList2]);
-		setFilteredProjects(Array.from(set));
-	}, [search]);
+	const [search, setSearch, filteredList] = useSearch<ProjectCard>(cards, "title");
 
 	return (
 		<>
@@ -75,20 +53,11 @@ const Projects: NextPage = () => {
 			<main className="container space-y-4 pb-24 lg:space-y-8 lg:pb-32">
 				<div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
 					<h1 className="text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">My Projects</h1>
-					<div className="relative xl:col-start-3">
-						<span className="sr-only">Search</span>
-						<span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-2">
-							<SearchIcon className="h-5 w-5 text-slate-400" />
-						</span>
-						<input
-							className="w-full truncate rounded-lg border border-slate-200 py-3 pl-9 pr-3 text-sm placeholder-slate-400 ring-blue-600 transition-all focus:border-transparent focus:outline-none focus:ring-2 lg:text-base"
-							id="search"
-							type="search"
-							placeholder="Search"
-							onChange={(e) => setSearch(e.target.value)}
-							value={search}
-						/>
-					</div>
+					<Search
+						className="relative xl:col-start-3"
+						search={search}
+						setSearch={setSearch}
+					/>
 				</div>
 				<div className="grid gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
 					<Link href="/project/new">
@@ -99,7 +68,7 @@ const Projects: NextPage = () => {
 							<p className="lg:text-lg">Create new project</p>
 						</a>
 					</Link>
-					{filteredProjects.map(({ link, title, desc, createdAt }, index) => (
+					{filteredList.map(({ link, title, desc, createdAt }, index) => (
 						<ProjectCard
 							key={index}
 							link={link}
