@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Head, ProjectCard, Search } from "@components";
+import { useState } from "react";
+import { Head, ProjectCard, Search, CreateProject } from "@components";
 import { useSearch } from "@hooks";
 import { PlusCircleIcon } from "@heroicons/react/outline";
 import type { NextPage } from "next";
@@ -46,10 +46,15 @@ const cards: ProjectCard[] = [
 
 const Projects: NextPage = () => {
 	const [search, setSearch, filteredList] = useSearch<ProjectCard>(cards, "title");
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 	return (
 		<>
 			<Head title="Dashboard" />
+			<CreateProject
+				isOpen={isModalOpen}
+				setIsOpen={setIsModalOpen}
+			/>
 			<main className="container space-y-4 pb-24 lg:space-y-8 lg:pb-32">
 				<div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
 					<h1 className="text-4xl font-bold tracking-tighter text-slate-900 lg:text-5xl">My Projects</h1>
@@ -60,14 +65,15 @@ const Projects: NextPage = () => {
 					/>
 				</div>
 				<div className="grid gap-4 sm:grid-cols-2 lg:gap-8 xl:grid-cols-3">
-					<Link href="/project/new">
-						<a className="grid aspect-video place-content-center gap-2 rounded-lg bg-blue-600 p-4 text-center text-white transition-all active:bg-blue-700 lg:gap-4 lg:p-8">
-							<span>
-								<PlusCircleIcon className="mx-auto h-20 w-20 lg:h-24 lg:w-24" />
-							</span>
-							<p className="lg:text-lg">Create new project</p>
-						</a>
-					</Link>
+					<button
+						onClick={() => setIsModalOpen(true)}
+						className="grid aspect-video place-content-center gap-2 rounded-lg bg-blue-600 p-4 text-white transition-all active:bg-blue-700 lg:gap-4 lg:p-8"
+					>
+						<span>
+							<PlusCircleIcon className="mx-auto h-20 w-20 lg:h-24 lg:w-24" />
+						</span>
+						<p className="lg:text-lg">Create new project</p>
+					</button>
 					{filteredList.map(({ link, title, desc, createdAt }, index) => (
 						<ProjectCard
 							key={index}
