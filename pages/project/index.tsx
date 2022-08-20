@@ -15,7 +15,7 @@ const cards: ProjectCard[] = [
 	{
 		link: "/",
 		title: "ChattY",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quaerat a obcaecati!",
+		desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus obcaecati blanditiis minima. Atque ratione dignissimos, maxime sed saepe consequatur mollitia officiis veniam ipsam, ducimus minus eligendi, natus deleniti. Repellendus vero eum amet labore vitae rem, illum, laudantium cum hic debitis perferendis necessitatibus, nostrum distinctio autem optio dignissimos nemo dicta vel?",
 		createdAt: new Date(),
 	},
 	{

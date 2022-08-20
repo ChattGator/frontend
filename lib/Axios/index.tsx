@@ -35,7 +35,7 @@ class HttpClient {
 		});
 
 		http.interceptors.response.use(
-			(response) => response.data,
+			(response) => response.data.data,
 			(error) => {
 				const { response } = error;
 				return this.handleError(response);

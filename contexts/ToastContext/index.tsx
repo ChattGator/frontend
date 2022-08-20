@@ -24,7 +24,11 @@ export const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
 	const [toasts, setToasts] = useState<Toast[]>([]);
 
 	const addToast: (toast: Toast) => void = (toast) => {
-		setToasts((toasts) => [...toasts, toast]);
+		const allToasts = [...toasts, toast];
+		if (allToasts.length > 5) {
+			allToasts.shift();
+		}
+		setToasts(allToasts);
 	};
 
 	const removeToast: (index: number) => void = (index) => {

@@ -74,7 +74,6 @@ const Navbar: FC<Props> = () => {
 										isAvatarLoading && "animate-pulse"
 									}`}
 								>
-									{/* TODO (Vatsal): Change alt to user */}
 									<Image
 										src={
 											user.avatar ??
@@ -115,7 +114,6 @@ const Navbar: FC<Props> = () => {
 													isAvatarLoading && "animate-pulse"
 												}`}
 											>
-												{/* TODO (Vatsal): Change alt to user */}
 												<Image
 													src={
 														user.avatar ??
@@ -154,28 +152,13 @@ const Navbar: FC<Props> = () => {
 								</Transition>
 							</>
 						) : (
-							<>
-								<li>
-									<Link href="/login">
-										<a
-											className={`${
-												router.pathname == "/login"
-													? "font-semibold text-slate-900"
-													: "font-normal text-slate-600"
-											} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
-										>
-											Login
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/register">
-										<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
-											Register
-										</a>
-									</Link>
-								</li>
-							</>
+							<li>
+								<Link href="/login-register">
+									<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
+										Login/Register
+									</a>
+								</Link>
+							</li>
 						)}
 					</ul>
 				</nav>

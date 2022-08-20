@@ -19,7 +19,6 @@ const Toast: FC<Props> = ({ index, type, message }) => {
 	useEffect(() => {
 		const timeout = setTimeout(() => {
 			setIsShowing(false);
-			removeToast(index);
 		}, 5000);
 		return () => {
 			clearTimeout(timeout);
@@ -38,10 +37,6 @@ const Toast: FC<Props> = ({ index, type, message }) => {
 		if (type === "info") return "border-blue-600";
 	};
 
-	const deleteToast = () => {
-		setIsShowing(false);
-	};
-
 	return (
 		<Transition
 			as="button"
@@ -52,7 +47,8 @@ const Toast: FC<Props> = ({ index, type, message }) => {
 			leave="transition transform"
 			leaveFrom="translate-y-0 opacity-100"
 			leaveTo="translate-y-full opacity-0"
-			onClick={() => deleteToast()}
+			onClick={() => setIsShowing(false)}
+			afterLeave={() => removeToast(index)}
 			className={`flex w-full items-center space-x-1 rounded-lg border-2 bg-white p-2 text-left text-xs text-slate-600 lg:space-x-2 lg:p-4 lg:text-sm ${getBorderColor(
 				type
 			)}`}
