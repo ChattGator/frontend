@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { AtSymbolIcon } from "@heroicons/react/outline";
-import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
 import type { FC } from "react";
 
 interface Props {
@@ -11,18 +11,15 @@ interface Props {
 interface DetailsCardProps {
 	image: string;
 	name: string;
+	isAdmin: boolean;
 }
 
-const DetailsCard: FC<DetailsCardProps> = ({ image, name }) => {
+const DetailsCard: FC<DetailsCardProps> = ({ image, name, isAdmin }) => {
 	const [isImageLoading, setIsImageLoading] = useState<boolean>(true);
 
 	return (
 		<div className="flex items-center space-x-2 lg:space-x-4">
-			<div
-				className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
-					isImageLoading && "animate-pulse"
-				}`}
-			>
+			<div className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${isImageLoading && "animate-pulse"}`}>
 				<Image
 					src={image}
 					alt={name}
@@ -36,6 +33,11 @@ const DetailsCard: FC<DetailsCardProps> = ({ image, name }) => {
 				/>
 			</div>
 			<p className="text-slate-600 lg:text-lg">{name}</p>
+			{isAdmin && (
+				<span className="rounded-lg bg-blue-200 px-2 py-1 text-xs font-semibold text-blue-600 lg:text-sm">
+					Group Admin
+				</span>
+			)}
 		</div>
 	);
 };
@@ -48,7 +50,7 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 			<div className="space-x-2 text-right lg:space-x-4">
 				<button className="inline-flex items-center space-x-1 rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
 					<span>
-						<PencilAltIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+						<PencilIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 					</span>
 					<span>Edit</span>
 				</button>
@@ -77,9 +79,7 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 				/>
 			</div>
 			<div className="text-center">
-				<p className="text-xl font-semibold text-slate-900 lg:text-2xl">
-					John Doe
-				</p>
+				<p className="text-xl font-semibold text-slate-900 lg:text-2xl">John Doe</p>
 				<p className="flex items-center justify-center font-light text-slate-600 lg:text-lg">
 					<span>
 						<AtSymbolIcon className="h-5 w-5 lg:h-6 lg:w-6" />
@@ -88,31 +88,29 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 				</p>
 			</div>
 			<div>
-				<span className="block text-sm font-semibold text-slate-900 lg:text-base">
-					Bio
-				</span>
+				<span className="block text-sm font-semibold text-slate-900 lg:text-base">Bio</span>
 				<p className="max-w-prose text-gray-600 lg:text-lg">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-					Voluptates in impedit ipsa quos facere adipisci quam
-					corrupti quod mollitia molestias?
+					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates in impedit ipsa quos facere
+					adipisci quam corrupti quod mollitia molestias?
 				</p>
 			</div>
 			<div className="space-y-2 lg:space-y-4">
-				<div className="text-sm font-semibold text-slate-900 lg:text-base">
-					3 groups joined
-				</div>
+				<div className="text-sm font-semibold text-slate-900 lg:text-base">3 groups joined</div>
 				<div className="space-y-2">
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 						name="Team NPM"
+						isAdmin={true}
 					/>
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 						name="Team NPM"
+						isAdmin={false}
 					/>
 					<DetailsCard
 						image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
 						name="Team NPM"
+						isAdmin={false}
 					/>
 				</div>
 			</div>

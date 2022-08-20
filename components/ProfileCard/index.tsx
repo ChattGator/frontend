@@ -35,12 +35,12 @@ const ProfileCard: FC<Props & ConditionalProps> = ({
 		<>
 			<button
 				className={`block w-full rounded-lg p-2 transition-colors lg:p-4 ${
-					isActive ? "bg-blue-600" : "bg-blue-100 hover:bg-blue-200"
+					isActive ? "bg-blue-200" : "hover:bg-blue-100"
 				}`}
 			>
 				<div className="flex items-center space-x-2 lg:space-x-4">
 					<div
-						className={`h-12 w-12 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
+						className={`h-12 w-12 flex-shrink-0 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
 							isImageLoading && "animate-pulse"
 						}`}
 					>
@@ -59,16 +59,12 @@ const ProfileCard: FC<Props & ConditionalProps> = ({
 					<p className="text-left">
 						<span
 							className={`mb-1 block font-semibold ${
-								isActive ? "text-white" : "text-slate-900"
+								isActive ? "text-blue-600" : "text-slate-900"
 							} lg:text-lg`}
 						>
 							{name}
 						</span>
-						<span
-							className={`block text-sm line-clamp-1 lg:text-base ${
-								isActive ? "text-slate-200" : "text-slate-600"
-							}`}
-						>
+						<span className="block text-sm text-slate-600 line-clamp-1 lg:text-base">
 							{username ? (
 								<span className="inline-flex items-center">
 									<AtSymbolIcon className="h-3 w-3 lg:h-4 lg:w-4" />
@@ -79,13 +75,7 @@ const ProfileCard: FC<Props & ConditionalProps> = ({
 							)}
 						</span>
 						{totalGroupMembers && (
-							<span
-								className={`block text-sm font-light lg:text-base ${
-									isActive
-										? "text-slate-200"
-										: "text-slate-600"
-								}`}
-							>
+							<span className="block text-sm font-light text-slate-600 lg:text-base">
 								<span>Total Members: {totalGroupMembers}</span>
 							</span>
 						)}

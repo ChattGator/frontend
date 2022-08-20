@@ -4,29 +4,30 @@ import { Transition } from "@headlessui/react";
 import { useRouter, NextRouter } from "next/router";
 import { useState, useEffect, useRef, Fragment } from "react";
 import { XIcon } from "@heroicons/react/outline";
+import { useUser } from "@contexts";
 import type { FC, RefObject } from "react";
 
 interface Props {
 	isAuthenticated: boolean;
 }
 
-const Navbar: FC<Props> = ({ isAuthenticated }) => {
+const Navbar: FC<Props> = () => {
 	const [isAvatarLoading, setIsAvatarLoading] = useState<boolean>();
 	const [toggleProfile, setToggleProfile] = useState<boolean>(false);
 	const router: NextRouter = useRouter();
 	const ref: RefObject<HTMLDivElement> = useRef(null);
 
-	const handleToggleProfile: () => void = () =>
-		setToggleProfile((toggleProfile) => !toggleProfile);
+	const handleToggleProfile: () => void = () => setToggleProfile((toggleProfile) => !toggleProfile);
 
 	useEffect(() => {
 		const handleClickOutside: (event: any) => void = (event) => {
-			if (ref.current && !ref.current.contains(event.target))
-				setToggleProfile(false);
+			if (ref.current && !ref.current.contains(event.target)) setToggleProfile(false);
 		};
 		document.addEventListener("click", handleClickOutside);
 		return () => document.removeEventListener("click", handleClickOutside);
 	});
+
+	const { loading, user, logout } = useUser();
 
 	return (
 		<>
@@ -41,32 +42,46 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 							ChattY
 						</a>
 					</Link>
-					{isAuthenticated ? (
-						<ul className="flex items-center gap-2 lg:gap-4">
-							<li>
-								<Link href="/project">
-									<a
-										className={`${
-											router.pathname == "/project"
-												? "font-semibold text-slate-900"
-												: "font-normal text-slate-600"
-										} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
-									>
-										My Projects
-									</a>
-								</Link>
-							</li>
-							<li className="relative">
+					<ul className="relative flex items-center space-x-2 lg:space-x-4">
+						<li>
+							<a
+								href="#"
+								className="rounded-lg px-2 py-1 text-sm font-normal text-slate-600 transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base"
+							>
+								Docs
+							</a>
+						</li>
+						{loading ? (
+							<div className="h-12 w-32 animate-pulse rounded-lg bg-slate-200 lg:h-16 lg:w-52"></div>
+						) : user ? (
+							<>
+								<li>
+									<Link href="/project">
+										<a
+											className={`${
+												router.pathname == "/project"
+													? "font-semibold text-slate-900"
+													: "font-normal text-slate-600"
+											} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
+										>
+											Projects
+										</a>
+									</Link>
+								</li>
 								<button
 									onClick={handleToggleProfile}
-									className={`h-8 w-8 rounded-full bg-slate-200 lg:h-12 lg:w-12 ${
+									className={`ml-2 h-10 w-10 rounded-full bg-slate-200 lg:ml-4 lg:h-12 lg:w-12 ${
 										isAvatarLoading && "animate-pulse"
 									}`}
 								>
-									{/* TODO (Vatsal): Change alt to user */}
 									<Image
-										src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-										alt="John Doe"
+										src={
+											user.avatar ??
+											`https://ui-avatars.com/api/name=${
+												user.name ?? "Unknown Name"
+											}?&background=random`
+										}
+										alt={user.name ?? "Unknown Name"}
 										width="1"
 										height="1"
 										layout="responsive"
@@ -86,7 +101,7 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 									leaveFrom="translate-y-0 opacity-100"
 									leaveTo="-translate-y-1/4 opacity-0"
 								>
-									<div className="absolute top-12 right-1/2 z-50 w-48 translate-x-1/2 space-y-2 rounded-lg bg-white p-8 text-center shadow-lg lg:top-16 lg:w-64 lg:space-y-4">
+									<div className="absolute top-14 right-0 z-50 w-48 space-y-2 rounded-lg bg-white p-4 text-center shadow-lg lg:top-16 lg:w-64 lg:space-y-4 lg:p-8">
 										<button
 											onClick={handleToggleProfile}
 											className="absolute top-4 right-4 rounded-lg p-0.5"
@@ -96,69 +111,56 @@ const Navbar: FC<Props> = ({ isAuthenticated }) => {
 										<div className="mx-auto w-fit rounded-full border-2 border-blue-600 p-1">
 											<div
 												className={`h-16 w-16 rounded-full bg-slate-200 lg:h-24 lg:w-24 ${
-													isAvatarLoading &&
-													"animate-pulse"
+													isAvatarLoading && "animate-pulse"
 												}`}
 											>
-												{/* TODO (Vatsal): Change alt to user */}
 												<Image
-													src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-													alt="John Doe"
+													src={
+														user.avatar ??
+														`https://ui-avatars.com/api/name=${
+															user.name ?? "Unknown Name"
+														}?&background=random`
+													}
+													alt={user.name ?? "Unknown Name"}
 													width="1"
 													height="1"
 													layout="responsive"
 													objectFit="cover"
 													objectPosition="center center"
 													className="rounded-full"
-													onLoad={() =>
-														setIsAvatarLoading(
-															false
-														)
-													}
+													onLoad={() => setIsAvatarLoading(false)}
 												/>
 											</div>
 										</div>
 										<div>
 											<p className="text-lg font-semibold text-slate-900 lg:text-xl">
-												John Doe
+												{user.name ?? "Unknown Name"}
 											</p>
 											<p className="select-all text-sm text-slate-600 lg:text-base">
-												email@email.com
+												{user.email ?? "email@email.com"}
 											</p>
+										</div>
+										<div>
+											<button
+												onClick={logout}
+												className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base"
+											>
+												Logout
+											</button>
 										</div>
 									</div>
 								</Transition>
-							</li>
+							</>
+						) : (
 							<li>
-								<button className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
-									Logout
-								</button>
-							</li>
-						</ul>
-					) : (
-						<ul className="flex items-center gap-2 lg:gap-4">
-							<li>
-								<Link href="/login">
-									<a
-										className={`${
-											router.pathname == "/login"
-												? "font-semibold text-slate-900"
-												: "font-normal text-slate-600"
-										} rounded-lg px-2 py-1 text-sm transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base`}
-									>
-										Login
-									</a>
-								</Link>
-							</li>
-							<li>
-								<Link href="/register">
+								<Link href="/login-register">
 									<a className="rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
-										Register
+										Login/Register
 									</a>
 								</Link>
 							</li>
-						</ul>
-					)}
+						)}
+					</ul>
 				</nav>
 			</header>
 		</>

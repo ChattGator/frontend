@@ -1,9 +1,4 @@
-import {
-	PencilAltIcon,
-	TrashIcon,
-	ClipboardCopyIcon,
-	ClipboardCheckIcon,
-} from "@heroicons/react/solid";
+import { PencilIcon, TrashIcon, ClipboardCopyIcon, ClipboardCheckIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import type { FC, InputHTMLAttributes } from "react";
 
@@ -60,15 +55,13 @@ const Input: FC<InputProps> = ({ label, value, ...rest }) => {
 
 const ProjectDetailsCard: FC<Props> = ({ name, projectKey, projectSecret }) => {
 	return (
-		<div className="rounded-lg bg-white shadow-lg">
+		<div className="rounded-lg border-2 border-slate-200 bg-white">
 			<div className="space-y-4 border-b-2 border-slate-200 p-4 sm:flex sm:items-center sm:justify-between sm:space-y-0 lg:p-8">
-				<h3 className="text-3xl font-bold tracking-tight text-blue-600 lg:text-4xl">
-					{name}
-				</h3>
+				<h3 className="text-3xl font-bold tracking-tight text-blue-600 lg:text-4xl">{name}</h3>
 				<div className="space-x-2 lg:space-x-4">
 					<button className="inline-flex items-center space-x-1 rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
 						<span>
-							<PencilAltIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+							<PencilIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 						</span>
 						<span>Edit</span>
 					</button>
@@ -93,13 +86,10 @@ const ProjectDetailsCard: FC<Props> = ({ name, projectKey, projectSecret }) => {
 					/>
 				</div>
 				<div>
-					<span className="block text-xs font-semibold text-slate-900 lg:text-sm">
-						Description
-					</span>
+					<span className="block text-xs font-semibold text-slate-900 lg:text-sm">Description</span>
 					<p className="max-w-prose text-gray-600 lg:text-lg">
-						Lorem, ipsum dolor sit amet consectetur adipisicing
-						elit. Voluptates in impedit ipsa quos facere adipisci
-						quam corrupti quod mollitia molestias?
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates in impedit ipsa quos facere
+						adipisci quam corrupti quod mollitia molestias?
 					</p>
 				</div>
 			</div>
