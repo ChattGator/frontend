@@ -1,4 +1,4 @@
-import Toast from "../Toast";
+import { Toast } from "@components";
 import { useToast } from "@contexts";
 import type { FC } from "react";
 

@@ -11,4 +11,7 @@ export { default as ToastContainer } from "./ToastContainer";
 export { default as Search } from "./Search";
 export { default as GitHubIcon } from "./GitHubIcon";
 export { default as GoogleIcon } from "./GoogleIcon";
+export { default as Loading } from "./Loading";
+export { default as LoginSVG } from "./LoginSVG";
+export { default as SelectSVG } from "./SelectSVG";
 export { default as CreateProject } from "./CreateProject";

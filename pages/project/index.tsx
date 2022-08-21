@@ -1,8 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Head, ProjectCard, Search, CreateProject } from "@components";
 import { useSearch } from "@hooks";
 import { PlusCircleIcon } from "@heroicons/react/outline";
-import type { NextPage } from "next";
+import { Developer, Project } from "@utils";
+import { useUser } from "@contexts";
+import { parseCookies } from "nookies";
+import type { NextPage, GetServerSideProps } from "next";
+
+interface UserResposne {
+	name: string;
+	picture: string;
+	email: string;
+	projects: any[];
+	_id: string;
+	createdAt: string;
+}
+
+interface ProjectResposne {
+	name: string;
+	developerId: string;
+	description: string;
+	credentials: {
+		secret: string;
+	};
+	projectConfig: {
+		isGroupEnabled: boolean;
+		chatLimit: number;
+	};
+	_id: string;
+	createdAt: string;
+}
+
+interface Props {
+	token: string;
+	user: UserResposne;
+	projects: ProjectResposne[];
+}
 
 interface ProjectCard {
 	link: string;
@@ -11,42 +44,21 @@ interface ProjectCard {
 	createdAt: Date;
 }
 
-const cards: ProjectCard[] = [
-	{
-		link: "/",
-		title: "ChattY",
-		desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus obcaecati blanditiis minima. Atque ratione dignissimos, maxime sed saepe consequatur mollitia officiis veniam ipsam, ducimus minus eligendi, natus deleniti. Repellendus vero eum amet labore vitae rem, illum, laudantium cum hic debitis perferendis necessitatibus, nostrum distinctio autem optio dignissimos nemo dicta vel?",
-		createdAt: new Date(),
-	},
-	{
-		link: "/",
-		title: "Instagram",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quaerat a obcaecati!",
-		createdAt: new Date(),
-	},
-	{
-		link: "/",
-		title: "Twitter",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quaerat a obcaecati!",
-		createdAt: new Date(),
-	},
-	{
-		link: "/",
-		title: "Twitch",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quaerat a obcaecati!",
-		createdAt: new Date(),
-	},
-	{
-		link: "/",
-		title: "Reddit",
-		desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quaerat a obcaecati!",
-		createdAt: new Date(),
-	},
-];
-
-const Projects: NextPage = () => {
-	const [search, setSearch, filteredList] = useSearch<ProjectCard>(cards, "title");
+const Projects: NextPage<Props> = ({ token, user, projects }) => {
+	const { user: authenticatedUser, setUser } = useUser();
+	const [search, setSearch, filteredList] = useSearch<ProjectResposne>(projects, "name");
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+	useEffect(() => {
+		if (authenticatedUser) return;
+		setUser({
+			id: user._id,
+			avatar: user.picture,
+			name: user.name,
+			email: user.email,
+			token,
+		});
+	}, []);
 
 	return (
 		<>
@@ -74,13 +86,13 @@ const Projects: NextPage = () => {
 						</span>
 						<p className="lg:text-lg">Create new project</p>
 					</button>
-					{filteredList.map(({ link, title, desc, createdAt }, index) => (
+					{filteredList.map(({ name, description, _id, createdAt }, index) => (
 						<ProjectCard
 							key={index}
-							link={link}
-							title={title}
-							description={desc}
-							createdAt={createdAt}
+							id={_id}
+							title={name}
+							description={description}
+							createdAt={new Date(createdAt)}
 						/>
 					))}
 				</div>
@@ -90,3 +102,28 @@ const Projects: NextPage = () => {
 };
 
 export default Projects;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+	const cookies = parseCookies(ctx);
+	if (!cookies["authenticated"] || !cookies["token"]) {
+		return {
+			redirect: {
+				permanent: false,
+				destination: "/login-register",
+			},
+		};
+	}
+
+	const developerService = new Developer();
+	const projectService = new Project();
+	const user = await developerService.getUserDetails(cookies["token"]);
+	const projects = await projectService.getProjectsByDeveloper(user._id, cookies["token"]);
+
+	return {
+		props: {
+			token: cookies["token"],
+			user,
+			projects,
+		},
+	};
+};

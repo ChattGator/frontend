@@ -3,15 +3,15 @@ import { ClockIcon } from "@heroicons/react/outline";
 import type { FC } from "react";
 
 interface Props {
-	link: string;
+	id: string;
 	title: string;
 	description: string;
 	createdAt: Date;
 }
 
-const ProjectCard: FC<Props> = ({ link, title, description, createdAt }) => {
+const ProjectCard: FC<Props> = ({ id, title, description, createdAt }) => {
 	return (
-		<Link href={link}>
+		<Link href={`/project/${id}`}>
 			<a className="aspect-video rounded-lg border-2 border-slate-200 bg-white transition-colors hover:border-blue-600 active:bg-blue-100">
 				<h2 className="border-b-2 border-slate-200 py-2 px-4 text-2xl font-semibold text-blue-600 lg:py-4 lg:px-8 lg:text-3xl">
 					{title}

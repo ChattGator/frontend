@@ -1,17 +1,44 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AtSymbolIcon } from "@heroicons/react/outline";
 import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
+import { Loading } from "@components";
+import { Project } from "@utils";
+import { useUser } from "@contexts";
 import type { FC } from "react";
 
 interface Props {
 	id: string;
+	type: "user" | "group";
 }
 
 interface DetailsCardProps {
 	image: string;
 	name: string;
 	isAdmin: boolean;
+}
+
+interface ChatUserResposne {
+	_id: string;
+	projectId: string;
+	name: string;
+	userId: string;
+	avatar: string;
+	userName: string;
+	bio: string;
+	createdAt: string;
+}
+
+interface GroupResponse {
+	_id: string;
+	projectId: string;
+	name: string;
+	description: string;
+	isGroup: boolean;
+	admins: string[];
+	membersList: string[];
+	messages: any[];
+	createdAt: string;
 }
 
 const DetailsCard: FC<DetailsCardProps> = ({ image, name, isAdmin }) => {
@@ -42,8 +69,41 @@ const DetailsCard: FC<DetailsCardProps> = ({ image, name, isAdmin }) => {
 	);
 };
 
-const ProfileDetails: FC<Props> = ({ id }) => {
+const ProfileDetails: FC<Props> = ({ id, type }) => {
+	const { user } = useUser();
 	const [isAvatarLoading, setIsAvatarLoading] = useState<boolean>(true);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [data, setData] = useState<any>(null);
+	const projectService = new Project();
+
+	useEffect(() => {
+		let res: any = null;
+		const getData = async () => {
+			switch (type) {
+				case "user":
+					res = await projectService.getUserById(id, user?.token);
+					break;
+				case "group":
+					res = await projectService.getGroupById(id, user?.token);
+					break;
+				default:
+					break;
+			}
+			setData(res);
+			setIsLoading(false);
+		};
+
+		setIsLoading(true);
+		getData();
+	}, [id]);
+
+	if (isLoading)
+		return (
+			<div className="flex h-full items-center justify-center space-x-2">
+				<Loading className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
+				<span className="font-semibold text-blue-600 lg:text-lg">Loading</span>
+			</div>
+		);
 
 	return (
 		<div className="space-y-4 lg:space-y-8">
@@ -61,40 +121,50 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 					<span>Delete</span>
 				</button>
 			</div>
-			<div
-				className={`mx-auto h-24 w-24 rounded-full bg-slate-200 lg:h-32 lg:w-32 ${
-					isAvatarLoading && "animate-pulse"
-				}`}
-			>
-				<Image
-					src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-					alt="notion avatar"
-					width="1"
-					height="1"
-					layout="responsive"
-					objectFit="cover"
-					objectPosition="center center"
-					className="rounded-full"
-					onLoad={() => setIsAvatarLoading(false)}
-				/>
-			</div>
+			{type === "user" && (
+				<div
+					className={`mx-auto h-24 w-24 rounded-full bg-slate-200 lg:h-32 lg:w-32 ${
+						isAvatarLoading && "animate-pulse"
+					}`}
+				>
+					<Image
+						src={
+							data?.avatar ??
+							`https://ui-avatars.com/api/name=${data?.name ?? "Unknown Name"}?&background=random`
+						}
+						alt={data?.name ?? "Unknown Name"}
+						width="1"
+						height="1"
+						layout="responsive"
+						objectFit="cover"
+						objectPosition="center center"
+						className="rounded-full"
+						onLoad={() => setIsAvatarLoading(false)}
+					/>
+				</div>
+			)}
 			<div className="text-center">
-				<p className="text-xl font-semibold text-slate-900 lg:text-2xl">John Doe</p>
-				<p className="flex items-center justify-center font-light text-slate-600 lg:text-lg">
-					<span>
-						<AtSymbolIcon className="h-5 w-5 lg:h-6 lg:w-6" />
+				<p className="text-xl font-semibold text-slate-900 lg:text-2xl">{data?.name ?? "Unknown Name"}</p>
+				{type === "user" && (
+					<p className="flex items-center justify-center font-light text-slate-600 lg:text-lg">
+						<span>
+							<AtSymbolIcon className="h-5 w-5 lg:h-6 lg:w-6" />
+						</span>
+						<span>{data?.userName ?? "unknown_name"}</span>
+					</p>
+				)}
+			</div>
+			{data && (
+				<div>
+					<span className="block text-sm font-semibold text-slate-900 lg:text-base">
+						{type === "user" ? "Bio" : "Description"}
 					</span>
-					<span>johndoe</span>
-				</p>
-			</div>
-			<div>
-				<span className="block text-sm font-semibold text-slate-900 lg:text-base">Bio</span>
-				<p className="max-w-prose text-gray-600 lg:text-lg">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates in impedit ipsa quos facere
-					adipisci quam corrupti quod mollitia molestias?
-				</p>
-			</div>
-			<div className="space-y-2 lg:space-y-4">
+					<p className="max-w-prose text-gray-600 lg:text-lg">
+						{type === "user" ? data?.bio : data?.description}
+					</p>
+				</div>
+			)}
+			{/* <div className="space-y-2 lg:space-y-4">
 				<div className="text-sm font-semibold text-slate-900 lg:text-base">3 groups joined</div>
 				<div className="space-y-2">
 					<DetailsCard
@@ -113,7 +183,7 @@ const ProfileDetails: FC<Props> = ({ id }) => {
 						isAdmin={false}
 					/>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

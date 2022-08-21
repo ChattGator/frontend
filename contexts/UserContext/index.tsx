@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext, useContext } from "react";
-import { useRouter } from "next/router";
 import { onAuthStateChanged, signInWithPopup, GithubAuthProvider, GoogleAuthProvider, signOut } from "firebase/auth";
 import { auth } from "@lib";
 import { Developer } from "@utils";
@@ -7,10 +6,10 @@ import { setCookie, destroyCookie } from "nookies";
 import type { FC, ReactNode } from "react";
 
 interface User {
-	id: string | null;
-	name: string | null;
-	email: string | null;
-	avatar: string | null;
+	id: string;
+	name: string;
+	email: string;
+	avatar: string;
 	token: string;
 }
 
@@ -31,17 +30,27 @@ const UserContext = createContext<UserContextProps | undefined>(undefined);
 export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [user, setUser] = useState<User | null>(null);
-	const router = useRouter();
 	const developerService = new Developer();
 
 	useEffect(() => {
+		if (user) return;
 		try {
 			const unsubscribe = onAuthStateChanged(auth, async (user) => {
 				if (user) {
 					const token = await user.getIdToken();
 					const userDetails = await developerService.getUserDetails(token);
-					setCookie(null, "token", token);
-					setCookie(null, "authenticated", "true");
+					setCookie(null, "token", token, {
+						secure: process.env.NODE_ENV !== "development",
+						maxAge: 60 * 60,
+						sameSite: true,
+						path: "/",
+					});
+					setCookie(null, "authenticated", "true", {
+						secure: process.env.NODE_ENV !== "development",
+						maxAge: 60 * 60,
+						sameSite: true,
+						path: "/",
+					});
 					setUser({
 						id: userDetails._id,
 						name: userDetails.name,
@@ -76,8 +85,19 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 						avatar: userDetails.picture,
 						token,
 					});
-					setCookie(null, "token", token);
-					setCookie(null, "authenticated", "true");
+					setCookie(null, "token", token, {
+						secure: process.env.NODE_ENV !== "development",
+						maxAge: 60 * 60,
+						sameSite: true,
+						path: "/",
+					});
+					setCookie(null, "authenticated", "true", {
+						secure: process.env.NODE_ENV !== "development",
+						maxAge: 60 * 60,
+						sameSite: true,
+						path: "/",
+					});
+					break;
 				case "Google":
 					res = await signInWithPopup(auth, new GoogleAuthProvider());
 					token = await res.user.getIdToken();
@@ -89,13 +109,22 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 						avatar: userDetails.picture,
 						token,
 					});
-					setCookie(null, "token", token);
-					setCookie(null, "authenticated", "true");
+					setCookie(null, "token", token, {
+						secure: process.env.NODE_ENV !== "development",
+						maxAge: 60 * 60,
+						sameSite: true,
+						path: "/",
+					});
+					setCookie(null, "authenticated", "true", {
+						secure: process.env.NODE_ENV !== "development",
+						maxAge: 60 * 60,
+						sameSite: true,
+						path: "/",
+					});
 					break;
 				default:
 					break;
 			}
-			router.push("/dashboard");
 		} catch (err) {
 			console.error(err);
 		} finally {
@@ -103,10 +132,20 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 		}
 	};
 
-	const logout = async () => {
+	const logout: () => void = async () => {
 		await signOut(auth);
-		destroyCookie(null, "token");
-		destroyCookie(null, "authenticated");
+		destroyCookie(null, "token", {
+			secure: process.env.NODE_ENV !== "development",
+			maxAge: new Date(0),
+			sameSite: true,
+			path: "/",
+		});
+		destroyCookie(null, "authenticated", {
+			secure: process.env.NODE_ENV !== "development",
+			maxAge: new Date(0),
+			sameSite: true,
+			path: "/",
+		});
 		setUser(null);
 	};
 
