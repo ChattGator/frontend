@@ -42,7 +42,7 @@ const Input: FC<Props> = ({ isRequired, regex, label, state, setState, ...rest }
 	}, [state.value]);
 
 	return (
-		<div>
+		<div className="space-y-1">
 			<label
 				htmlFor={id}
 				className="block w-full text-xs font-semibold text-slate-600 lg:text-sm"
