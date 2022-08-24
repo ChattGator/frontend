@@ -1,4 +1,4 @@
-import { Head, GoogleIcon, GitHubIcon } from "@components";
+import { Head, GoogleIcon, GitHubIcon, LoginSVG } from "@components";
 import { useUser } from "@contexts";
 import type { NextPage } from "next";
 
@@ -8,8 +8,9 @@ const Login: NextPage = () => {
 	return (
 		<>
 			<Head title="Login" />
-			<main className="container pb-24 lg:pb-32">
-				<div className="mx-auto rounded-lg border-2 border-slate-200 bg-white">
+			<main className="container space-y-8 py-24 lg:flex lg:flex-row-reverse lg:items-center lg:justify-around lg:gap-8 lg:space-y-0 lg:py-32">
+				<LoginSVG className="mx-auto w-4/5 lg:mx-0 xl:w-2/5" />
+				<div className="rounded-lg border-2 border-slate-200 bg-white">
 					<h1 className="border-b-2 border-slate-200 p-4 text-4xl font-bold tracking-tighter text-slate-900 lg:p-8 lg:text-5xl">
 						Login/Register
 					</h1>

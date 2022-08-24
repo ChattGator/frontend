@@ -3,6 +3,7 @@ import { onAuthStateChanged, signInWithPopup, GithubAuthProvider, GoogleAuthProv
 import { auth } from "@lib";
 import { Developer } from "@utils";
 import { setCookie, destroyCookie } from "nookies";
+import { useRouter } from "next/router";
 import type { FC, ReactNode } from "react";
 
 interface User {
@@ -31,6 +32,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [user, setUser] = useState<User | null>(null);
 	const developerService = new Developer();
+	const router = useRouter();
 
 	useEffect(() => {
 		if (user) return;
@@ -61,12 +63,11 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 				} else {
 					setUser(null);
 				}
+				setLoading(false);
 			});
 			return () => unsubscribe();
 		} catch (err) {
 			console.error(err);
-		} finally {
-			setLoading(false);
 		}
 	}, []);
 
@@ -125,10 +126,10 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 				default:
 					break;
 			}
+			setLoading(false);
+			router.reload();
 		} catch (err) {
 			console.error(err);
-		} finally {
-			setLoading(false);
 		}
 	};
 

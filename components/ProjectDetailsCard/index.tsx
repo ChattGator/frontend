@@ -1,12 +1,12 @@
 import {
 	PencilIcon,
 	TrashIcon,
-	ClipboardCopyIcon,
-	ClipboardCheckIcon,
+	ClipboardDocumentIcon,
+	ClipboardDocumentCheckIcon,
 	CheckIcon,
-	XIcon,
+	XMarkIcon,
 	ExclamationCircleIcon,
-} from "@heroicons/react/solid";
+} from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Input, Loading } from "@components";
 import type { FC, InputHTMLAttributes } from "react";
@@ -56,9 +56,9 @@ const Credentials: FC<InputProps> = ({ label, value, ...rest }) => {
 					className="rounded-lg"
 				>
 					{isCopied ? (
-						<ClipboardCheckIcon className="h-6 w-6 lg:h-7 lg:w-7" />
+						<ClipboardDocumentIcon className="h-6 w-6 lg:h-7 lg:w-7" />
 					) : (
-						<ClipboardCopyIcon className="h-6 w-6 lg:h-7 lg:w-7" />
+						<ClipboardDocumentCheckIcon className="h-6 w-6 lg:h-7 lg:w-7" />
 					)}
 				</button>
 			</div>
@@ -109,7 +109,7 @@ const ProjectDetailsCard: FC<Props> = ({ id, title, secret, description }) => {
 									className="inline-flex items-center space-x-1 rounded-lg bg-slate-200 px-2 py-1 text-sm font-semibold text-slate-900 transition-colors active:bg-slate-300 lg:px-4 lg:py-2 lg:text-base"
 								>
 									<span>
-										<XIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+										<XMarkIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 									</span>
 									<span>Cancel</span>
 								</button>

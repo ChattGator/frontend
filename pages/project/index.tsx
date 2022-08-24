@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Head, ProjectCard, Search, CreateProject } from "@components";
 import { useSearch } from "@hooks";
-import { PlusCircleIcon } from "@heroicons/react/outline";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { Developer, Project } from "@utils";
 import { useUser } from "@contexts";
 import { parseCookies } from "nookies";

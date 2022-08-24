@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AtSymbolIcon } from "@heroicons/react/outline";
-import { PencilIcon, TrashIcon } from "@heroicons/react/solid";
+import { AtSymbolIcon } from "@heroicons/react/24/outline";
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Loading } from "@components";
 import { Project } from "@utils";
 import { useUser } from "@contexts";

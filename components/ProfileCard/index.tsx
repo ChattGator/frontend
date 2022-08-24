@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { AtSymbolIcon } from "@heroicons/react/outline";
+import { AtSymbolIcon } from "@heroicons/react/24/outline";
 import type { FC, Dispatch, SetStateAction } from "react";
 
 interface Props {

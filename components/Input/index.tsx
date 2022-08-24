@@ -1,5 +1,5 @@
 import { useEffect, useRef, useId, Dispatch, SetStateAction } from "react";
-import { ExclamationCircleIcon } from "@heroicons/react/solid";
+import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import type { FC, InputHTMLAttributes } from "react";
 
 interface State {

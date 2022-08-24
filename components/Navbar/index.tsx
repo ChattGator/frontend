@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Transition } from "@headlessui/react";
 import { useRouter, NextRouter } from "next/router";
 import { useState, useEffect, useRef, Fragment } from "react";
-import { XIcon } from "@heroicons/react/outline";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useUser } from "@contexts";
 import type { FC, RefObject } from "react";
 
@@ -106,7 +106,7 @@ const Navbar: FC<Props> = () => {
 											onClick={handleToggleProfile}
 											className="absolute top-4 right-4 rounded-lg p-0.5"
 										>
-											<XIcon className="h-4 w-4 text-slate-900 lg:h-5 lg:w-5" />
+											<XMarkIcon className="h-4 w-4 text-slate-900 lg:h-5 lg:w-5" />
 										</button>
 										<div className="mx-auto w-fit rounded-full border-2 border-blue-600 p-1">
 											<div

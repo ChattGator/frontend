@@ -11,7 +11,7 @@ interface UserResposne {
 	name: string;
 	picture: string;
 	email: string;
-	projects: any[];
+	projects: ProjectResposne[];
 	_id: string;
 	createdAt: string;
 }
