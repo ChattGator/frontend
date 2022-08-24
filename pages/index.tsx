@@ -70,7 +70,7 @@ const Home: NextPage = () => {
 							<h3 className="text-2xl font-semibold text-blue-600 lg:text-3xl">
 								Build Your Chat with Ease
 							</h3>
-							<p>
+							<p className="text-sm text-slate-600 lg:text-base">
 								ChattY makes it easy to build your own chat UI with ease. With just a few lines of code,
 								you can quickly create a chat UI that looks and feels great.
 							</p>
@@ -82,7 +82,7 @@ const Home: NextPage = () => {
 							<h3 className="text-2xl font-semibold text-blue-600 lg:text-3xl">
 								Use Our Pre-Made Components
 							</h3>
-							<p>
+							<p className="text-sm text-slate-600 lg:text-base">
 								ChattY comes with a wide range of pre-made components that you can use to build your
 								chat UI. With our pre-made UI, you can easily customize your chat interface to match
 								your brand identity.
@@ -93,7 +93,7 @@ const Home: NextPage = () => {
 								<ServerStackIcon className="h-6 w-6 text-white lg:h-8 lg:w-6" />
 							</span>
 							<h3 className="text-2xl font-semibold text-blue-600 lg:text-3xl">Host Your Chat with Us</h3>
-							<p>
+							<p className="text-sm text-slate-600 lg:text-base">
 								We take care of all the server infrastructure and hosting so you don&apos;t have to
 								worry about a thing. Just deploy our Chat UI and start chatting!
 							</p>
