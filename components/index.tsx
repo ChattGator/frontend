@@ -15,3 +15,4 @@ export { default as Loading } from "./Loading";
 export { default as LoginSVG } from "./LoginSVG";
 export { default as SelectSVG } from "./SelectSVG";
 export { default as CreateProject } from "./CreateProject";
+export { default as DeleteProject } from "./DeleteProject";

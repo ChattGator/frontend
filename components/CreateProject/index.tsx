@@ -4,8 +4,8 @@ import { useUser } from "@contexts";
 import { useRouter } from "next/router";
 import { useState, useEffect, useId, useRef, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationCircleIcon } from "@heroicons/react/solid";
-import { PlusIcon, XIcon } from "@heroicons/react/outline";
+import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { FC, Dispatch, SetStateAction } from "react";
 
 interface Props {
@@ -157,7 +157,7 @@ const CreateProject: FC<Props> = ({ isOpen, setIsOpen }) => {
 										className="inline-flex items-center space-x-1 rounded-lg bg-slate-200 px-2 py-1 text-sm font-semibold text-slate-900 transition-colors active:bg-slate-300 lg:px-4 lg:py-2 lg:text-base"
 									>
 										<span>
-											<XIcon className="h-4 w-4 lg:h-5 lg:w-5" />
+											<XMarkIcon className="h-4 w-4 lg:h-5 lg:w-5" />
 										</span>
 										<span>Cancel</span>
 									</button>

@@ -11,7 +11,7 @@ interface UserResposne {
 	name: string;
 	picture: string;
 	email: string;
-	projects: any[];
+	projects: ProjectResposne[];
 	_id: string;
 	createdAt: string;
 }
@@ -78,11 +78,11 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 			case 1:
 				break;
 			case 2:
-				res = await projectService.getUsersByProject(project._id, authenticatedUser?.token);
+				res = await projectService.getUsersByProject(project._id);
 				setData(res);
 				break;
 			case 3:
-				res = await projectService.getGroupsByProject(project._id, authenticatedUser?.token);
+				res = await projectService.getGroupsByProject(project._id);
 				setData(res);
 				break;
 			default:
@@ -173,7 +173,7 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 									<Loading className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
 									<span className="font-semibold text-blue-600 lg:text-lg">Loading</span>
 								</div>
-							) : (
+							) : data.length > 0 ? (
 								<div className="grid grid-cols-1 divide-y-2 divide-slate-200 lg:grid-cols-3 lg:divide-x-2 lg:divide-y-0">
 									<div className="space-y-2 pb-4 lg:space-y-4 lg:pb-0 lg:pr-8">
 										{data.map(
@@ -208,6 +208,12 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 										)}
 									</div>
 								</div>
+							) : (
+								<div>
+									<p className="text-center italic text-slate-600">
+										Your app doen&apos;t have any users
+									</p>
+								</div>
 							)}
 						</Tab.Panel>
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
@@ -216,7 +222,7 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 									<Loading className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
 									<span className="font-semibold text-blue-600 lg:text-lg">Loading</span>
 								</div>
-							) : (
+							) : data.length > 0 ? (
 								<div className="grid grid-cols-1 divide-y-2 divide-slate-200 lg:grid-cols-3 lg:divide-x-2 lg:divide-y-0">
 									<div className="space-y-2 pb-4 lg:space-y-4 lg:pb-0 lg:pr-8">
 										{data.map(
@@ -250,6 +256,12 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 											</div>
 										)}
 									</div>
+								</div>
+							) : (
+								<div>
+									<p className="text-center italic text-slate-600">
+										Your app doen&apos;t have any groups
+									</p>
 								</div>
 							)}
 						</Tab.Panel>

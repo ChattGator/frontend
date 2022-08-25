@@ -72,7 +72,7 @@ class Project extends HttpClient {
 		});
 	}
 
-	public async updateProject(id: string, data: CreateProject, token: string): Promise<ProjectResposne> {
+	public async updateProject(id: string, data: CreateProject, token?: string): Promise<ProjectResposne> {
 		return this.put(`/project/${id}`, data, {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -80,7 +80,7 @@ class Project extends HttpClient {
 		});
 	}
 
-	public async deleteProject(id: string, token: string): Promise<ProjectResposne> {
+	public async deleteProject(id: string, token?: string): Promise<ProjectResposne> {
 		return this.delete(`/project/${id}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -88,36 +88,20 @@ class Project extends HttpClient {
 		});
 	}
 
-	public async getUsersByProject(id: string, token?: string): Promise<UserResposne[]> {
-		return this.get(`/user?projectId=${id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+	public async getUsersByProject(id: string): Promise<UserResposne[]> {
+		return this.get(`/user?projectId=${id}`);
 	}
 
-	public async getUserById(id: string, token?: string): Promise<UserResposne> {
-		return this.get(`/user/${id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+	public async getUserById(id: string): Promise<UserResposne> {
+		return this.get(`/user/${id}`);
 	}
 
-	public async getGroupsByProject(id: string, token?: string): Promise<GroupResponse[]> {
-		return this.get(`/group?projectId=${id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+	public async getGroupsByProject(id: string): Promise<GroupResponse[]> {
+		return this.get(`/group?projectId=${id}`);
 	}
 
-	public async getGroupById(id: string, token?: string): Promise<UserResposne> {
-		return this.get(`/group/${id}`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+	public async getGroupById(id: string): Promise<UserResposne> {
+		return this.get(`/group/${id}`);
 	}
 }
 

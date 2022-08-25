@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { AtSymbolIcon } from "@heroicons/react/outline";
+import { AtSymbolIcon } from "@heroicons/react/24/outline";
 import type { FC, Dispatch, SetStateAction } from "react";
 
 interface Props {
@@ -45,32 +45,33 @@ const ProfileCard: FC<Props & ConditionalProps> = ({
 				}`}
 			>
 				<div className="flex items-center space-x-2 lg:space-x-4">
-					{avatar && (
-						<div
-							className={`h-12 w-12 flex-shrink-0 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
-								isImageLoading && "animate-pulse"
-							}`}
-						>
-							<Image
-								src={avatar}
-								alt={name}
-								width="1"
-								height="1"
-								layout="responsive"
-								objectFit="cover"
-								objectPosition="center center"
-								className="rounded-full"
-								onLoad={() => setIsImageLoading(false)}
-							/>
-						</div>
-					)}
+					<div
+						className={`h-12 w-12 flex-shrink-0 rounded-full bg-slate-200 lg:h-16 lg:w-16 ${
+							isImageLoading && "animate-pulse"
+						}`}
+					>
+						<Image
+							src={
+								avatar ??
+								`https://ui-avatars.com/api/name=${name ?? "Personal Chat"}?&background=random`
+							}
+							alt={name ?? "Personal Chat"}
+							width="1"
+							height="1"
+							layout="responsive"
+							objectFit="cover"
+							objectPosition="center center"
+							className="rounded-full"
+							onLoad={() => setIsImageLoading(false)}
+						/>
+					</div>
 					<p className="text-left">
 						<span
 							className={`mb-1 block font-semibold ${
 								_id === id ? "text-blue-600" : "text-slate-900"
 							} lg:text-lg`}
 						>
-							{name}
+							{name ?? "Personal Chat"}
 						</span>
 						<span className="block text-sm text-slate-600 line-clamp-1 lg:text-base">
 							{username ? (

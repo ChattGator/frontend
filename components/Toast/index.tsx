@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CheckCircleIcon, XCircleIcon, ExclamationCircleIcon } from "@heroicons/react/solid";
+import { CheckCircleIcon, XCircleIcon, ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import { Transition } from "@headlessui/react";
 import { useToast } from "@contexts";
 import type { FC } from "react";
