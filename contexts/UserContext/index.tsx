@@ -127,7 +127,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 					break;
 			}
 			setLoading(false);
-			router.reload();
+			router.push("/project");
 		} catch (err) {
 			console.error(err);
 		}
@@ -148,6 +148,7 @@ export const UserProvider: FC<UserProviderProps> = ({ children }) => {
 			path: "/",
 		});
 		setUser(null);
+		router.push("/");
 	};
 
 	return <UserContext.Provider value={{ loading, user, setUser, login, logout }}>{children}</UserContext.Provider>;

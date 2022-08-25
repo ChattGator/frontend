@@ -136,7 +136,7 @@ const Navbar: FC<Props> = () => {
 											<p className="text-lg font-semibold text-slate-900 lg:text-xl">
 												{user.name ?? "Unknown Name"}
 											</p>
-											<p className="select-all text-sm text-slate-600 lg:text-base">
+											<p className="select-all break-words text-sm text-slate-600 lg:text-base">
 												{user.email ?? "email@email.com"}
 											</p>
 										</div>
