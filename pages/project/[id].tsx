@@ -1,11 +1,11 @@
-import { Head, ProfileCard, ProfileDetails, ProjectDetailsCard, SelectSVG, Loading } from "@components";
-import { Developer, Project } from "@utils";
+import { Head, Loading, ProfileCard, ProfileDetails, ProjectDetailsCard, SelectSVG } from "@components";
 import { useUser } from "@contexts";
-import { useEffect, Fragment, useState } from "react";
 import { Tab } from "@headlessui/react";
+import { Developer, Project } from "@utils";
+import type { GetServerSideProps, NextPage } from "next";
 import { parseCookies } from "nookies";
-import type { NextPage, GetServerSideProps } from "next";
 import type { FormEventHandler } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 interface UserResposne {
 	name: string;
@@ -62,7 +62,7 @@ interface Props {
 
 const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 	const { user: authenticatedUser, setUser } = useUser();
-	const tabs: string[] = ["Stats", "Settings", "Users", "Groups"];
+	const tabs: string[] = ["Users", "Groups"];
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [id, setId] = useState<string>("");
 	const [data, setData] = useState<any>([]);
@@ -139,7 +139,7 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 						))}
 					</Tab.List>
 					<Tab.Panels as={Fragment}>
-						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
+						{/* <Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							{isLoading ? (
 								<div className="flex items-center justify-center space-x-2">
 									<Loading className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
@@ -166,7 +166,7 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 									</h1>
 								</div>
 							)}
-						</Tab.Panel>
+						</Tab.Panel> */}
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							{isLoading ? (
 								<div className="flex items-center justify-center space-x-2">

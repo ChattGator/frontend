@@ -45,8 +45,9 @@ const Navbar: FC<Props> = () => {
 					<ul className="relative flex items-center space-x-2 lg:space-x-4">
 						<li>
 							<a
-								href="#"
-								className="rounded-lg px-2 py-1 text-sm font-normal text-slate-600 transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base"
+								href="https://chattgator-docs.netlify.app/"
+								target="_blank"
+								className="rounded-lg px-2 py-1 text-sm font-normal text-slate-600 transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base" rel="noreferrer"
 							>
 								Docs
 							</a>
