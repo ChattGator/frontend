@@ -62,8 +62,8 @@ interface Props {
 
 const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 	const { user: authenticatedUser, setUser } = useUser();
-	const tabs: string[] = ["Stats", "Settings", "Users", "Groups"];
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const tabs: string[] = ["Users", "Groups"];
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [id, setId] = useState<string>("");
 	const [data, setData] = useState<any>([]);
 
@@ -74,14 +74,10 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 		let res = null;
 		switch (index) {
 			case 0:
-				break;
-			case 1:
-				break;
-			case 2:
 				res = await projectService.getUsersByProject(project._id);
 				setData(res);
 				break;
-			case 3:
+			case 1:
 				res = await projectService.getGroupsByProject(project._id);
 				setData(res);
 				break;
@@ -93,6 +89,13 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 	};
 
 	useEffect(() => {
+		const getData = async () => {
+			const res = await projectService.getUsersByProject(project._id);
+			setData(res);
+			setIsLoading(false);
+		};
+		getData();
+
 		if (authenticatedUser) return;
 		setUser({
 			id: user._id,
@@ -139,7 +142,7 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 						))}
 					</Tab.List>
 					<Tab.Panels as={Fragment}>
-						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
+						{/* <Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							{isLoading ? (
 								<div className="flex items-center justify-center space-x-2">
 									<Loading className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
@@ -152,8 +155,8 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 									</h1>
 								</div>
 							)}
-						</Tab.Panel>
-						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
+						</Tab.Panel> */}
+						{/* <Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							{isLoading ? (
 								<div className="flex items-center justify-center space-x-2">
 									<Loading className="h-6 w-6 text-blue-600 lg:h-8 lg:w-8" />
@@ -166,7 +169,7 @@ const Dashboard: NextPage<Props> = ({ token, user, project }) => {
 									</h1>
 								</div>
 							)}
-						</Tab.Panel>
+						</Tab.Panel> */}
 						<Tab.Panel className="p-4 focus:outline-none lg:p-8">
 							{isLoading ? (
 								<div className="flex items-center justify-center space-x-2">

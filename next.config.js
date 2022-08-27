@@ -3,7 +3,15 @@ const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
 	images: {
-		domains: ["images.unsplash.com", "avatars.githubusercontent.com", "ui-avatars.com", "lh3.googleusercontent.com"],
+		dangerouslyAllowSVG: true,
+		domains: [
+			"images.unsplash.com",
+			"avatars.githubusercontent.com",
+			"ui-avatars.com",
+			"lh3.googleusercontent.com",
+			"pbs.twimg.com",
+			"res.cloudinary.com",
+		],
 	},
 	env: {
 		BACKEND_URL: process.env.NEXT_PUBLIC_API_URL,
