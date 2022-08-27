@@ -1,11 +1,11 @@
-import { Head, ProfileCard, ProfileDetails, ProjectDetailsCard, SelectSVG, Loading } from "@components";
-import { Developer, Project } from "@utils";
+import { Head, Loading, ProfileCard, ProfileDetails, ProjectDetailsCard, SelectSVG } from "@components";
 import { useUser } from "@contexts";
-import { useEffect, Fragment, useState } from "react";
 import { Tab } from "@headlessui/react";
+import { Developer, Project } from "@utils";
+import type { GetServerSideProps, NextPage } from "next";
 import { parseCookies } from "nookies";
-import type { NextPage, GetServerSideProps } from "next";
 import type { FormEventHandler } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 interface UserResposne {
 	name: string;

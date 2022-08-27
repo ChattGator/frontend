@@ -63,7 +63,7 @@ const CreateProject: FC<Props> = ({ isOpen, setIsOpen }) => {
 		setIsLoading(true);
 		const projectService = new Project();
 		// TODO-WARNING: Not working
-		await projectService.createProject({ name: title.value, description: title.value }, user?.token);
+		await projectService.createProject({ name: title.value, description: description.value }, user?.token);
 		setIsOpen(false);
 		setIsLoading(false);
 		router.reload();

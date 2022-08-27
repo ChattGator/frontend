@@ -1,5 +1,5 @@
-import { useState, createContext, useContext } from "react";
 import type { FC, ReactNode } from "react";
+import { createContext, useContext, useState } from "react";
 
 type Type = "success" | "error" | "info";
 

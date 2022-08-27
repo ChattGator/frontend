@@ -1,16 +1,15 @@
-import Image from "next/image";
-import chatImage from "../public/images/chat-kit.png";
-import { useState } from "react";
 import { Head } from "@components";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import {
-	ChatBubbleLeftRightIcon,
-	WrenchScrewdriverIcon,
-	DevicePhoneMobileIcon,
-	ServerStackIcon,
+	ChatBubbleLeftRightIcon, DevicePhoneMobileIcon,
+	ServerStackIcon, WrenchScrewdriverIcon
 } from "@heroicons/react/24/solid";
+import type { GetServerSideProps, NextPage } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { parseCookies } from "nookies";
-import type { NextPage, GetServerSideProps } from "next";
+import { useState } from "react";
+import chatImage from "../public/images/chat-kit.png";
 
 const Home: NextPage = () => {
 	const [isChatImageLoading, setIsChatImageLoading] = useState<boolean>(true);
@@ -30,11 +29,19 @@ const Home: NextPage = () => {
 						</p>
 						<div className="space-x-2 lg:space-x-4">
 							<button className="inline-flex items-center space-x-1 rounded-lg bg-blue-600 px-2 py-1 text-sm font-semibold text-white transition-colors active:bg-blue-700 lg:px-4 lg:py-2 lg:text-base">
-								<span>Get Started</span>
+								<Link href="/login-register">
+									<a>
+										Get Started
+									</a>
+								</Link>
 								<ChatBubbleLeftRightIcon className="h-5 w-5" />
 							</button>
 							<button className="inline-flex items-center space-x-1 rounded-lg px-2 py-1 text-sm font-semibold text-slate-600 transition-colors hover:bg-blue-100 active:text-blue-600 lg:px-4 lg:py-2 lg:text-base">
-								<span>See Documentation</span>
+								<Link href="https://chattgator-docs.netlify.app/">
+									<a target="_blank">
+										See Documentation
+									</a>
+								</Link>
 								<ArrowRightIcon className="h-5 w-5" />
 							</button>
 						</div>
