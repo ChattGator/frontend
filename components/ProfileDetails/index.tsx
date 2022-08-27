@@ -169,7 +169,9 @@ const ProfileDetails: FC<Props> = ({ id, type }) => {
 					</div>
 				) : (
 					<div className="space-y-2 lg:space-y-4">
-						<div className="text-sm font-semibold text-slate-900 lg:text-base">3 groups joined</div>
+						<div className="text-sm font-semibold text-slate-900 lg:text-base">
+							Total Members: {members.length}
+						</div>
 						<div className="space-y-2">
 							{members.map((member, index) => (
 								<DetailsCard

@@ -3,11 +3,14 @@ const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
 	images: {
+		dangerouslyAllowSVG: true,
 		domains: [
 			"images.unsplash.com",
 			"avatars.githubusercontent.com",
 			"ui-avatars.com",
 			"lh3.googleusercontent.com",
+			"pbs.twimg.com",
+			"res.cloudinary.com",
 		],
 	},
 	env: {

@@ -39,7 +39,7 @@ const Navbar: FC<Props> = () => {
 				>
 					<Link href="/">
 						<a className="rounded-lg text-3xl font-bold tracking-tighter text-slate-900 transition-colors active:text-blue-600 lg:text-4xl">
-							ChattY
+							ChattGator
 						</a>
 					</Link>
 					<ul className="relative flex items-center space-x-2 lg:space-x-4">
